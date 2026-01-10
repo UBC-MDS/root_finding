@@ -24,7 +24,7 @@ The root_finding package provides a small set of one-dimensional root-finding to
   A hybrid root-finding approach that combines the robustness of the Bisection Method with the fast local convergence of the Newton–Raphson Method. This method aims to improve reliability while maintaining efficient convergence.
 
 - `plot_root`  
-  Provides a visualization of the target function and the root-finding process, allowing users to inspect convergence behavior and compare methods graphically.
+  Provides a visualization of the target function and its roots, allowing users to inspect convergence behavior and compare methods graphically.
 
 ## Relation to the Python ecosystem
 
