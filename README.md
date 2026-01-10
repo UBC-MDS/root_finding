@@ -1,5 +1,8 @@
 # Welcome to root_finding
 
+## Contributors
+Harrison Li, Devon Vorster, Li Pu
+
 |        |        |
 |--------|--------|
 | Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/root_finding.svg)](https://pypi.org/project/root_finding/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/root_finding.svg)](https://pypi.org/project/root_finding/)  |
