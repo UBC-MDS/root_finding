@@ -5,7 +5,8 @@ A module that implements a root finding algorithm using Bisection
 from typing import Callable
 
 
-def bisection(f: Callable[[float], float], xmin: float, xmax: float, tol1: float):
+def bisection(f: Callable[[float], float], xmin: float, xmax: float,
+              tol1: float):
     r"""
        Find roots of a scalar function using Bisection.
 
