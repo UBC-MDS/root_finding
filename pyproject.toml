@@ -17,7 +17,9 @@ version = "0.1.0"
 
 description = "A python package for root finding"
 authors = [
-    { name = "Harrison Li, Devon Vorster, Li Pu", email = "harrisonyoyo30@gmail.com, devo@telus.net, puli20030306@gmail.com" },
+  { name = "Harrison Li", email = "harrisonyoyo30@gmail.com" },
+  { name = "Devon Vorster", email = "devo@telus.net" },
+  { name = "Li Pu", email = "puli20030306@gmail.com" }
 ]
 license = "MIT"
 requires-python = ">= 3.10" # Adjust based on the minimum version of Python that you support
