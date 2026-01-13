@@ -1,0 +1,6 @@
+name: root-finding
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
