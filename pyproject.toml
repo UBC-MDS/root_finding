@@ -33,13 +33,16 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [
+    "numpy", 
+    "matplotlib"
+]
 
 [project.urls]
-Homepage = "https://github.com/Harrisonlee0530, Dvorster, Coachyyds/root_finding"
-"Source Code" = "https://github.com/Harrisonlee0530, Dvorster, Coachyyds/root_finding"
-"Bug Tracker" = "https://github.com/Harrisonlee0530, Dvorster, Coachyyds/root_finding/issues"
-Documentation = "https://github.com/Harrisonlee0530, Dvorster, Coachyyds/root_finding/blob/main/README.md"
+Homepage = "https://github.com/Harrisonlee0530/root_finding"
+"Source Code" = "https://github.com/Harrisonlee0530/root_finding"
+"Bug Tracker" = "https://github.com/Harrisonlee0530/root_finding/issues"
+Documentation = "https://github.com/Harrisonlee0530/root_finding/blob/main/README.md"
 Download = "https://pypi.org/project/root_finding/#files"
 
 [project.optional-dependencies]
