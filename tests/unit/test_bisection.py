@@ -54,7 +54,8 @@ def test_bisection_output():
 
 def test_bisection_bad_input():
 
-    frazle_func = "frazle_func"
+    # define non-callable object for incorrect function input
+    fake_func = "fake_func"
 
     # check correct input types - typeErrors
     with pytest.raises(TypeError):
@@ -70,7 +71,7 @@ def test_bisection_bad_input():
         bisection(func, xmin=0, xmax=2, tol=1e-9, max_iter=200.5)
 
     with pytest.raises(TypeError):
-        bisection(frazle_func, xmin=0, xmax=2, tol=1e-9, max_iter=200)
+        bisection(fake_func, xmin=0, xmax=2, tol=1e-9, max_iter=200)
 
 
 def test_bisection_runtime_error():
