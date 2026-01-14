@@ -60,6 +60,21 @@ def bisection(
         >>> print(f"{root:.5f}")
             0.74827
     """
+    # Error handling for correct inputs
+
+    # note: correc type of f is enforced by python, raises TypeError
+
+    if not (isinstance(xmin, float) or isinstance(xmax, int)):
+        raise TypeError("'xmin' should be of type 'float'.")
+
+    if not (isinstance(xmax, float) or isinstance(xmax, int)):
+        raise TypeError("'xmax' should be of type 'float'.")
+
+    if not isinstance(tol, float):
+        raise TypeError("'tol' should be of type 'float'.")
+
+    if not isinstance(max_iter, int):
+        raise TypeError("'max_iter' should be of type 'int'.")
 
     xmid = 0
     it = 0

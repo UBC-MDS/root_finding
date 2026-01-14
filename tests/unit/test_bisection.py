@@ -53,6 +53,9 @@ def test_bisection_output():
 
 
 def test_bisection_bad_input():
+
+    frazle_func = "frazle_func"
+
     # check correct input types - typeErrors
     with pytest.raises(TypeError):
         bisection(func, xmin="2", xmax=1, tol=1e-9, max_iter=200)
@@ -61,10 +64,13 @@ def test_bisection_bad_input():
         bisection(func, xmin=2, xmax="1", tol=1e-9, max_iter=200)
 
     with pytest.raises(TypeError):
-        bisection(func, xmin=2, xmax="1", tol="1e-9", max_iter=200)
+        bisection(func, xmin=0, xmax=2, tol="1e-9", max_iter=200)
 
     with pytest.raises(TypeError):
-        bisection(func, xmin=2, xmax="1", tol=1e-9, max_iter=200.5)
+        bisection(func, xmin=0, xmax=2, tol=1e-9, max_iter=200.5)
+
+    with pytest.raises(TypeError):
+        bisection(frazle_func, xmin=0, xmax=2, tol=1e-9, max_iter=200)
 
 
 def test_bisection_runtime_error():
