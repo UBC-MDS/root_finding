@@ -82,7 +82,9 @@ def bisection(
 
         # Exit loop if we are at max iterations
         if it == max_iter:
-            break
+            raise RuntimeError(
+                f"Convergence failed, total iterations reached: {max_iter}"
+            )
         # calculate xmid
         xmid = (xmax + xmin) / 2
 
