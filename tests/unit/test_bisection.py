@@ -82,7 +82,15 @@ def test_bisection_runtime_error():
 
 
 def test_bisection_value_error():
-    # ensure a root exists via IVT
+    # Ensure correct value inputs for xmax and xmin
+
+    # Ensure a root exists between xmin and xmax
+    with pytest.raises(ValueError):
+        bisection(func, xmin=1, xmax=2, tol=1e-9, max_iter=200)
+
+    # Ensure xmax > xmin
+    with pytest.raises(ValueError):
+        bisection(func, xmin=2, xmax=1, tol=1e-9, max_iter=200)
     pass
 
 
