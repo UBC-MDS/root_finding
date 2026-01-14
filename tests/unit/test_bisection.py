@@ -75,7 +75,9 @@ def test_bisection_bad_input():
 
 
 def test_bisection_runtime_error():
-    # test funciton raises runtime errors
+    # test funciton raises runtime errors at max_iter
+    with pytest.raises(RuntimeError):
+        bisection(func, xmin=0, xmax=2, tol=1e-200, max_iter=200)
     pass
 
 
