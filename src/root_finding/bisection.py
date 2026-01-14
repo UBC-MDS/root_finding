@@ -76,6 +76,14 @@ def bisection(
     if not isinstance(max_iter, int):
         raise TypeError("'max_iter' should be of type 'int'.")
 
+    if xmax <= xmin:
+        raise ValueError("xmax should be greater than xmin")
+
+    if f(xmin) * f(xmax) > 0:
+        raise ValueError(
+            "Incorrect boundary values, f(xmax)*f(xmin) needs to be less than 0."
+        )
+
     xmid = 0
     it = 0
     while abs(xmax - xmin) > tol:
