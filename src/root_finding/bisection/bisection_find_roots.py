@@ -70,43 +70,35 @@ def bisection_find_roots(
     `
        Examples
         --------
-        >>> roots = bisection_multiple_roots(lambda x: x**2 - 4, -3, 3, N=100)
+        >>> roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)
         >>> print(roots)
             [-2.  2.]
 
         # Bisection method cannot find roots
-        >>> roots = bisection_multiple_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=100)
+        >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=100)
         >>> print(roots)
             []
 
         # Smaller intervals now find roots
-        >>> roots = bisection_multiple_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=1000)
+        >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=1000)
         >>> print(roots)
             [-0.01  0.01]
 
         # Returns duplicate roots
-        >>> roots = bisection_multiple_roots(lambda x: x**2 - 1, -3, 3, tol=1e-9, N=100)
+        >>> roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3, tol=1e-9, N=100)
         >>> print(roots)
             [-1. -1.  1.  1.]
 
     """
-    def bisection_multiple_roots(
-    f: Callable[[float], float],
-    xmin: float,
-    xmax: float,
-    tol: float = 1e-9,
-    max_iter: int = 500,
-    N: int = 100
-) -> Sequence[float]:
-    
+
     # Input handling
 
     # f type input handled by python - returns TypeError
-    
-    if not (isinstance(xmin, float) or isinstance(xmax, int)):
+
+    if not (isinstance(xmin, (int, float))):
         raise TypeError("'xmin' should be of type 'float'.")
 
-    if not (isinstance(xmax, float) or isinstance(xmax, int)):
+    if not (isinstance(xmax, (float, int))):
         raise TypeError("'xmax' should be of type 'float'.")
 
     if not isinstance(tol, float):
@@ -114,7 +106,7 @@ def bisection_find_roots(
 
     if not isinstance(max_iter, int):
         raise TypeError("'max_iter' should be of type 'int'.")
-    
+
     if not isinstance(N, int):
         raise TypeError("'N' should be of type 'int'.")
 
@@ -122,33 +114,36 @@ def bisection_find_roots(
         raise ValueError("xmax should be greater than xmin")
 
     # Initialize output
-    roots = np.array([])
+    roots = []
 
     # Create intervals
     x = np.linspace(xmin, xmax, N)
+    try:
+        y = f(x)
+    except Exception:
+        y = np.array([f(x) for x in x])
 
-    #-----------------------------
-    # might add a duplicate root but without might lose root due to over/underflow
-
-    # Check if xmin is a root 
-    if f(x[0]) == 0:
-        roots = np.append(roots, x[0])
-    #----------------------------
+    # Check if xmin is a root
+    if y[0] == 0:
+        roots.append(x[0])
 
     for i in range(1, len(x)):
-
         # Check if interval boundary is a root
-        if f(x[i]) == 0:
-            roots = np.append(roots, x[i])
+        if y[i] == 0:
+            # Duplicate root protection
+            if not roots or abs(x[i] - roots[-1]) > tol:
+                # add boundary root to roots
+                roots.append(x[i])
 
         # Check interval contains a root
-        elif np.sign(f(x[i-1])) != np.sign(f(x[i])):
+        elif np.sign(y[i - 1]) != np.sign(y[i]):
 
             # Apply bisection method
-            root = bisection(f, x[i-1], x[i], tol, max_iter)
+            root = bisection(f, x[i - 1], x[i], tol, max_iter)
 
             # Duplicate root detection
             if not roots or abs(root - roots[-1]) > tol:
-                roots = np.append(roots, root)
+                # add root to roots
+                roots.append(root)
 
     return roots
