@@ -15,6 +15,8 @@ def hybrid(
     xmax: float,
     tol1: float,
     tol2: float,
+    max_iter1=500, 
+    max_iter2=500
 ) -> Sequence[float]:
     r"""
     Find multiple roots of a scalar function using a hybrid
@@ -41,6 +43,10 @@ def hybrid(
     tol2 : float
         Relative convergence tolerance used by the Newton-Raphson method.
         Must be strictly positive.
+    max_iter1 : int
+        Maximum number of iteration for bisection method, Default = 500
+    max_iter2 : int
+        Maximum number of iteration for Newton's method, Default = 500
 
     Returns
     -------
@@ -107,4 +113,8 @@ def hybrid(
     [-1.0, 0.0, 1.0]
     """
 
-    pass
+    x_b = bisection_find_roots(f, xmin, xmax, tol1, max_iter=max_iter1)
+
+    roots = newton1d(f, dfdx, x_b, tol2, max_iter=max_iter2)
+
+    return roots
