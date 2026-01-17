@@ -7,7 +7,7 @@ import numpy as np
 from root_finding.hybrid import hybrid
 
 
-def test_correct_roots_1():
+def test_bisection_fail():
 
     def f(x):
         return x**2
