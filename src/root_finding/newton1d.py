@@ -26,7 +26,7 @@ def newton1d(
         Function whose root is sought. Must accept a single scalar argument.
     df : callable
         Derivative of `f`. Must accept a single scalar argument.
-    x0 : Sequence[float]
+    x0 : float or Sequence[float]
         Initial guesses for the root.
     tol1 : float
         Relative convergence tolerance for the Newton–Raphson method.
@@ -86,6 +86,8 @@ def newton1d(
         raise ValueError("tol1 must be > 0.")
     if not isinstance(max_iter, int) or max_iter <= 0:
         raise ValueError("max_iter must be a positive integer.")
+    if type(x0) is float or type(x0) is int:
+        x0 = [x0]
     for x in x0:
         if not math.isfinite(x):
             raise ValueError("All x0 must be a finite number.")
