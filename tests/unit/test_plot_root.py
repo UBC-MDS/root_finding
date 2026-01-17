@@ -47,3 +47,17 @@ def test_plot_root_basic():
     assert ax.get_xlabel() == "x"
     assert ax.get_ylabel() == "f(x)"
     assert "Hybrid" in ax.get_title()
+
+
+def test_plot_root_single_root():
+    # Quadratic with a single root at zero
+    f = lambda x: x**2
+    df = lambda x: 2*x
+    xmin, xmax = -1, 1
+    tol1, tol2 = 1e-6, 1e-12
+
+    fig, ax = plot_root(f, df, xmin, xmax, tol1, tol2)
+
+    scatter_points = [c for c in ax.collections if isinstance(c, PathCollection)]
+    plotted_points = sum([len(c.get_offsets()) for c in scatter_points])
+    assert plotted_points == 1  # only root at 0
