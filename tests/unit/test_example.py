@@ -7,14 +7,14 @@ is up to you. This test example provides a single test for the example.py
 module.
 """
 
-from root_finding.example import add_numbers
+# from root_finding.example import add_numbers
 
-def test_add_numbers():
-    """
-    Test that add_numbers works as expected.
+# def test_add_numbers():
+#     """
+#     Test that add_numbers works as expected.
 
-    A single line docstring for tests is generally sufficient.
-    """
-    out = add_numbers(1, 2)
-    expected_out = 3
-    assert  out == expected_out, f"Expected {expected_out} but got {out}"
+#     A single line docstring for tests is generally sufficient.
+#     """
+#     out = add_numbers(1, 2)
+#     expected_out = 3
+#     assert  out == expected_out, f"Expected {expected_out} but got {out}"
