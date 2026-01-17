@@ -116,6 +116,15 @@ def hybrid(
     >>> sorted(roots)
     [-1.0, 0.0, 1.0]
     """
+    
+    # if not callable(f):
+    #     raise TypeError("f must be a callable function")
+    # if not callable(dfdx):
+    #     raise TypeError("dfdx must be a callable function")
+    if type(n) is not int:
+        raise TypeError("n must be a positive integer")
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
 
     x_b = bisection_find_roots(f, xmin, xmax, tol1, max_iter=max_iter1)
     if len(x_b) == 0:

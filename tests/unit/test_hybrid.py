@@ -61,7 +61,7 @@ def dfdx(x):
 
 
 @pytest.mark.parametrize(
-    "f, xmin, xmax, tol, max_iter",
+    "func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n",
     [
         ("not_a_func", dfdx, 0, 1, 1e-9, 1e-9, 200, 200, 50),  # Bad f
         (func, "not_a_func", 0, 1, 1e-9, 1e-9, 200, 200, 50),  # Bad dfdx
@@ -70,10 +70,8 @@ def dfdx(x):
         (func, dfdx, 0, 1, "1e-9", 1e-9, 200, 200, 50),  # Bad tol1
         (func, dfdx, 0, 1, 1e-9, "1e-9", 200, 200, 50),  # Bad tol2
         (func, dfdx, 0, 1, 1e-9, 1e-9, "200", 200, 50),  # Bad max_iter1 
-        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, "200", 50),  # Bad max_iter2
-        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, "50"),  # Bad n
         (func, dfdx, 0, 1, 1e-9, 1e-9, 200.5, 200, 50),  # Bad max_iter1 
-        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200.5, 50),  # Bad max_iter2
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, "50"),  # Bad n
         (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, 0.5),  # Bad n
     ],
 )
@@ -82,4 +80,19 @@ def test_bad_input_type_errors(
 ):
     """Test cases where input is not the expected type."""
     with pytest.raises(TypeError):
+        hybrid(func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n)
+
+
+@pytest.mark.parametrize(
+    "func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n",
+    [
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200.5, 50),  # Bad max_iter2
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, -50),  # Bad n
+    ],
+)
+def test_bad_input_value_errors(
+    func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n
+):
+    """Test cases where input is not the expected type."""
+    with pytest.raises(ValueError):
         hybrid(func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n)
