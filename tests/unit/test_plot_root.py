@@ -11,7 +11,7 @@ from root_finding.plot_root import plot_root
 
 def test_plot():
     f = lambda x: x**3 - x
-    df = lambda x: 3*x**2 - 1
+    df = lambda x: 3 * x**2 - 1
     xmin, xmax = -2, 2
     tol1, tol2 = 1e-6, 1e-12
 
@@ -23,7 +23,7 @@ def test_plot():
 def test_plot_root_basic():
     # Simple quadratic function with two roots
     f = lambda x: x**2 - 4
-    df = lambda x: 2*x
+    df = lambda x: 2 * x
     xmin, xmax = -3, 3
     tol1, tol2 = 1e-6, 1e-12
 
@@ -52,7 +52,7 @@ def test_plot_root_basic():
 def test_plot_root_single_root():
     # Quadratic with a single root at zero
     f = lambda x: x**2
-    df = lambda x: 2*x
+    df = lambda x: 2 * x
     xmin, xmax = -1, 1
     tol1, tol2 = 1e-6, 1e-12
 
