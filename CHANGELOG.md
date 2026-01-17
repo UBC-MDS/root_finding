@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add tests and function body for bisection_find_roots.py
 - update dependencies in pyproject.toml
 - add evironment.yml
+- Add tests and function body for newton1d.py
 
 ## [0.0.1] - (2026-10-01)
 
@@ -23,7 +24,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add documentation for hybrid.py
 - Add documentation for plot_root.py
 - reformat .py files
-
-## [0.1.0] - (1979-01-01)
 
 - First release
