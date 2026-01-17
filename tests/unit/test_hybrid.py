@@ -50,3 +50,36 @@ def test_correct_roots_3():
 
     assert len(roots) == 3
     assert np.allclose(roots, [-1.0, 0.0, 1.0], atol=1e-10)
+
+
+def func(x):
+    return 3 * x**3 + 4 * x**2 - 2 * x - 2
+
+
+def dfdx(x):
+    return 9 * x**2 + 8 * x - 2
+
+
+@pytest.mark.parametrize(
+    "f, xmin, xmax, tol, max_iter",
+    [
+        ("not_a_func", dfdx, 0, 1, 1e-9, 1e-9, 200, 200, 50),  # Bad f
+        (func, "not_a_func", 0, 1, 1e-9, 1e-9, 200, 200, 50),  # Bad dfdx
+        (func, dfdx, "0", 1, 1e-9, 1e-9, 200, 200, 50),  # Bad xmin
+        (func, dfdx, 0, "1", 1e-9, 1e-9, 200, 200, 50),  # Bad xmax
+        (func, dfdx, 0, 1, "1e-9", 1e-9, 200, 200, 50),  # Bad tol1
+        (func, dfdx, 0, 1, 1e-9, "1e-9", 200, 200, 50),  # Bad tol2
+        (func, dfdx, 0, 1, 1e-9, 1e-9, "200", 200, 50),  # Bad max_iter1 
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, "200", 50),  # Bad max_iter2
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, "50"),  # Bad n
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200.5, 200, 50),  # Bad max_iter1 
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200.5, 50),  # Bad max_iter2
+        (func, dfdx, 0, 1, 1e-9, 1e-9, 200, 200, 0.5),  # Bad n
+    ],
+)
+def test_bad_input_type_errors(
+    func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n
+):
+    """Test cases where input is not the expected type."""
+    with pytest.raises(TypeError):
+        hybrid(func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n)
