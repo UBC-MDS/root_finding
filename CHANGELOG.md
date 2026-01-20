@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add github actinos workflow to automate pytest
+- Add github actions workflow to deploy package + test
+
+## [0.0.2] - (2026-01-20)
+
 - Update documentation for bisection.py
 - Add tests and function body for bisection.py
 - Add tests and function body for bisection_find_roots.py
@@ -16,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add evironment.yml
 - Add tests and function body for newton1d.py
 
-## [0.0.1] - (2026-10-01)
+## [0.0.1] - (2026-01-10)
 
 - Update code of conduct enforcement contact
 - Add documentation for bisection.py
