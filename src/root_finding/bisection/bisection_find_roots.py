@@ -16,79 +16,87 @@ def bisection_find_roots(
     N: int = 100,
 ) -> Sequence[float]:
     r"""
-       Find multiple roots of a scalar function using the bisection method.
+    Find multiple roots of a scalar function using the bisection method.
 
-       Split [xmin,xmax] into N-1 intervals and check for roots in each interval.
+    The interval ``[xmin, xmax]`` is split into ``N-1`` subintervals, and each
+    subinterval is checked for a sign change indicating a root.
 
-       Parameters
-       ----------
-       f : callable
-           Function whose root is sought. Must accept a single scalar argument.
-       xmin : float
-           Lower bound of the initial interval.
-       xmax : float
-           Upper bound of the initial interval.
-       tol : float, optional
-           Absolute convergence tolerance for the bisection method.
-           The method converges when |xmax - xmin| < `tol`.
-           The default value is 1e-6.
-        max_iter : int, optional
-            maximum number of iterations allowable.
-            Default is 100.
-        N : int, optional
-            Use to set number of intervals.
-            Default is 100 (99 intervals).
+    Parameters
+    ----------
+    f : callable
+        Function whose root is sought. Must accept a single scalar argument.
+    xmin : float
+        Lower bound of the initial interval.
+    xmax : float
+        Upper bound of the initial interval.
+    tol : float, optional
+        Absolute convergence tolerance for the bisection method.
+        The method converges when ``|xmax - xmin| < tol``.
+        Default is ``1e-6``.
+    max_iter : int, optional
+        Maximum number of iterations allowed.
+        Default is ``100``.
+    N : int, optional
+        Number of subintervals.
+        Default is ``100`` (99 intervals).
 
+    Returns
+    -------
+    roots : numpy.ndarray
+        Estimated roots of the function ``f``.
 
-       Returns
-       -------
-       roots : numpy array of floats
-           The estimated roots of the function `f`.
+    Raises
+    ------
+    RuntimeError
+        If the algorithm fails to converge within ``max_iter`` iterations.
+    TypeError
+        If the inputs are not of the expected types.
+    ValueError
+        If ``xmax <= xmin``.
 
-        Raises
-        ------
-        RuntimeError
-            If the algorithm fails to converge within `max_iter` iterations.
-        TypeError
-            If the inputs are not of the expected types.
+    Notes
+    -----
+    The bisection method requires that a root be enclosed within an interval
+    ``[a, b]`` such that ``f(a) * f(b) < 0``.
 
-       Notes
-       -----
+    Convergence is achieved when:
 
-       The bisection method requires that the root to be enclosed by the
-       initial interval ``[xmin, xmax]``, i.e., ``f(xmin) * f(xmax) < 0``.
-       It is used to produce an estimate that lies sufficiently close to
-       the root when the relative convergence criteria ``tol`` is satisfied:
+    :math:`|x_{\max} - x_{\min}| < \mathrm{tol}`
 
-       Where ``| (xmax - xmin) | < tol``
+    When searching for multiple roots, this method:
 
-       In general when searching for multiple root value the bisection method
-       is NOT guaranteed to find roots, and is NOT guaranteed to find roots
-       with multiplicity greater than 1 (e.g. roots of x**2)
+    * Is **not guaranteed** to find all roots
+    * Cannot detect roots with multiplicity greater than one (e.g. ``x**2``)
+    * May return duplicate roots
 
-       This function may return duplicate roots.
-    `
-       Examples
-        --------
-        >>> roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)
-        >>> print(roots)
-            [-2.  2.]
+    Examples
+    --------
+    Find two simple roots:
 
-        # Bisection method cannot find roots
-        >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=100)
-        >>> print(roots)
-            []
+    >>> roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)
+    >>> roots
+    array([-2.,  2.])
 
-        # Smaller intervals now find roots
-        >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3, tol=1e-9, max_iter = 1000, N=1000)
-        >>> print(roots)
-            [-0.01  0.01]
+    Bisection may fail with large intervals:
 
-        # Returns duplicate roots
-        >>> roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3, tol=1e-9, N=100)
-        >>> print(roots)
-            [-1. -1.  1.  1.]
+    >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,
+    ...                              tol=1e-9, max_iter=1000, N=100)
+    >>> roots
+    array([])
 
+    Smaller intervals recover the roots:
+
+    >>> roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,
+    ...                              tol=1e-9, max_iter=1000, N=1000)
+    >>> roots
+    array([-0.01,  0.01])
+
+    Duplicate roots may be returned:
+
+    >>> roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3,
+    ...                              tol=1e-9, N=100)
+    >>> roots
+    array([-1., -1.,  1.,  1.])
     """
 
     # Input handling
