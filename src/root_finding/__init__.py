@@ -22,8 +22,23 @@
 # SOFTWARE.
 
 """
-Add a docstring here for the init module.
+Root finding algorithms and utilities.
 
-This might include a very brief description of the package,
-its purpose, and any important notes.
+This package provides numerical methods for finding roots of
+one-dimensional functions.
 """
+
+from .newton1d import newton1d
+from .hybrid import hybrid
+from .plot_root import plot_root
+
+from .bisection.bisection import bisection
+from .bisection.bisection_find_roots import bisection_find_roots  # <-- adjust name if different
+
+__all__ = [
+    "newton1d",
+    "hybrid",
+    "plot_root",
+    "bisection",
+    "bisection_find_roots",
+]
