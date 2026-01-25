@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add github actions workflow to automate pytest + formatting
 - Add github actions workflow to deploy package + test
+- Add github actions workflow to update documnetation
+- Add a few unit tests
 
 ## [0.0.2] - (2026-01-20)
 
