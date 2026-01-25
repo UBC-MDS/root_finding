@@ -9,6 +9,7 @@ from root_finding.bisection.bisection import bisection
 import pytest
 
 
+# Define function to teest bisection method
 def func(x):
     return 3 * x**3 + 4 * x**2 - 2 * x - 2
 
