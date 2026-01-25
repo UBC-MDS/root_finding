@@ -52,6 +52,7 @@ Download = "https://pypi.org/project/root_finding/#files"
 # They are here now because hatch hasn't released support for them but plans to
 # in Mid November 2025.
 dev = [
+    "ruff",
     "hatch",
     "pre-commit",
 ]

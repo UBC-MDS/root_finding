@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add github actinos workflow to automate pytest
+- Add github actions workflow to automate pytest + formatting
 - Add github actions workflow to deploy package + test
 
 ## [0.0.2] - (2026-01-20)

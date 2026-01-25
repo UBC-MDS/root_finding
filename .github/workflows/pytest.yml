@@ -50,3 +50,9 @@ jobs:
       - name: Run tests with coverage
         run: |
           pytest --cov --cov-report=term --cov-branch
+
+      # Run linter
+      - name: Run linter
+        run: | 
+          ruff format .
+          ruff check . --fix || true
