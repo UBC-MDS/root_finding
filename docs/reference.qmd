@@ -14,4 +14,3 @@ jupyter:
 ---
 
 {{< quartodoc-ref >}}
-
