@@ -1,18 +1,4 @@
----
-title: bisection.bisection.bisection
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .qmd
-      format_name: quarto
-      format_version: '1.0'
-      jupytext_version: 1.16.7
-  kernelspec:
-    display_name: 522_proj
-    language: python
-    name: 522_proj
----
-
+# bisection.bisection.bisection { #root_finding.bisection.bisection.bisection }
 
 ```python
 bisection.bisection.bisection(f, xmin, xmax, tol=1e-09, max_iter=500)
