@@ -1,16 +1,15 @@
 project:
   type: website
-  output-dir: _site
 
 website:
   title: "root_finding"
   navbar:
     left:
-      - href: index.qmd
+      - href: docs/index.qmd
         text: Home
-      - href: tutorial.qmd
+      - href: docs/tutorial.qmd
         text: Tutorial
-      - href: reference/index.qmd
+      - href: docs/reference/index.qmd
         text: Reference
 
 format:
@@ -20,7 +19,7 @@ format:
 
 quartodoc:
   style: pkgdown
-  dir: reference
+  dir: docs/reference
   package: root_finding
   title: "API Reference"
   sections:
