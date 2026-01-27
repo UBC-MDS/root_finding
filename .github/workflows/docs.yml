@@ -36,14 +36,14 @@ jobs:
 
       - name: Build API documentation
         run: |
-          cd qdocs
+          cd docs
           quartodoc build
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-          path: qdocs
+          path: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
