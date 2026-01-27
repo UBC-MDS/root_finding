@@ -36,7 +36,6 @@ jobs:
 
       - name: Build API documentation
         run: |
-          cd docs
           quartodoc build
 
       - name: Render and Publish
