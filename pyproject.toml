@@ -59,6 +59,8 @@ dev = [
 
 docs = [
     "quartodoc",
+    "jupyter",
+    "nbformat"
 ]
 
 build = [
