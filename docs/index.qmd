@@ -1,16 +1,5 @@
 ---
 title: root_finding
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .qmd
-      format_name: quarto
-      format_version: '1.0'
-      jupytext_version: 1.16.7
-  kernelspec:
-    display_name: 522_proj
-    language: python
-    name: 522_proj
 ---
 
 ## Welcome to root_finding
