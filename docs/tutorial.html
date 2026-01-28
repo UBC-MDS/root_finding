@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bisection-method" class="level3">
 <h3 class="anchored" data-anchor-id="bisection-method">1. Bisection Method</h3>
 <p>The bisection method is the most robust approach. It’s guaranteed to converge if the function changes sign in the interval.</p>
-<div id="7afdda72" class="cell" data-execution_count="1">
+<div id="932a315d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> root_finding.bisection.bisection <span class="im">import</span> bisection</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -222,7 +222,7 @@ Verification: f(2.000000238418579) = 9.536743732496689e-07</code></pre>
 <section id="finding-multiple-roots" class="level3">
 <h3 class="anchored" data-anchor-id="finding-multiple-roots">2. Finding Multiple Roots</h3>
 <p>Use <code>bisection_find_roots</code> to automatically search for multiple roots in an interval:</p>
-<div id="fb67fe06" class="cell" data-execution_count="2">
+<div id="139fad60" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> root_finding.bisection.bisection_find_roots <span class="im">import</span> bisection_find_roots</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all roots in [-3, 3]</span></span>
@@ -236,7 +236,7 @@ Verification: f(2.000000238418579) = 9.536743732496689e-07</code></pre>
 <section id="newton-raphson-method" class="level3">
 <h3 class="anchored" data-anchor-id="newton-raphson-method">3. Newton-Raphson Method</h3>
 <p>For faster convergence, use Newton’s method (requires the derivative):</p>
-<div id="f8d22136" class="cell" data-execution_count="3">
+<div id="6bb7055e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> root_finding.newton1d <span class="im">import</span> newton1d</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the derivative</span></span>
@@ -258,7 +258,7 @@ Root from x0=-1.0: [-2.]</code></pre>
 <section id="hybrid-method" class="level3">
 <h3 class="anchored" data-anchor-id="hybrid-method">4. Hybrid Method</h3>
 <p>The hybrid method combines bisection and Newton-Raphson for both robustness and speed:</p>
-<div id="c77cf7e1" class="cell" data-execution_count="4">
+<div id="9dd7d5f7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> root_finding.hybrid <span class="im">import</span> hybrid</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all roots in the interval</span></span>
@@ -273,7 +273,7 @@ Root from x0=-1.0: [-2.]</code></pre>
 <section id="visualizing-results" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-results">Visualizing Results</h2>
 <p>Use the plotting function to visualize the function and its roots:</p>
-<div id="6417fa51" class="cell" data-execution_count="5">
+<div id="04dcde5d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> root_finding.plot_root <span class="im">import</span> plot_root</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the function and show the roots</span></span>
@@ -284,7 +284,7 @@ Root from x0=-1.0: [-2.]</code></pre>
 <section id="more-complex-example" class="level2">
 <h2 class="anchored" data-anchor-id="more-complex-example">More Complex Example</h2>
 <p>Let’s try a more interesting function:</p>
-<div id="209e8e0e" class="cell" data-execution_count="6">
+<div id="7c193a27" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A more complex function with multiple roots</span></span>
