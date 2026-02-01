@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Unreleased
 - setup workflow for code coverage with codecov and documentation preview with netlify
 - Add badges for linting, MIT license, codecov, netlify python version, testpypi version
-- fix documentation website link in README.md in [issue 78](https://github.com/UBC-MDS/root_finding/issues/78) mentioned in parent issues [issue 61](https://github.com/UBC-MDS/root_finding/issues/61) comment 3 and [issue 76](https://github.com/UBC-MDS/root_finding/issues/76) comment 2 and [issue 74](https://github.com/UBC-MDS/root_finding/issues/61) comment 3
+- fix documentation website link in README.md in [issue 78](https://github.com/UBC-MDS/root_finding/issues/78) mentioned in parent issues [issue 61](https://github.com/UBC-MDS/root_finding/issues/61) comment 3, [issue 76](https://github.com/UBC-MDS/root_finding/issues/76) comment 2 and [issue 74](https://github.com/UBC-MDS/root_finding/issues/61) comment 3
 
 ## [0.0.3] - (2026-01-24)
 
