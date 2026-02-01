@@ -3,7 +3,8 @@
 [![codecov](https://codecov.io/github/UBC-MDS/root_finding/graph/badge.svg?token=ILJqRBw9b6)](https://codecov.io/github/UBC-MDS/root_finding)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf66384c-bddd-4ef2-acfc-2245b5b66958/deploy-status)](https://app.netlify.com/projects/aesthetic-sherbet-903822/deploys)
 ![Python Versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
-[![TestPyPI version](https://img.shields.io/testpypi/v/root_finding)](https://test.pypi.org/project/root_finding/)
+![TestPyPI version](https://img.shields.io/badge/TestPyPI-0.1.0-blue)
+
 
 
 ## Contributors
