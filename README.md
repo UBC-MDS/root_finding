@@ -53,7 +53,7 @@ To contribute to the development of this package:
 
 1. **Clone the repository**
    ```bash
-   git clone git@github.com:Harrisonlee0530/root_finding.git
+   git clone git@github.com:UBC-MDS/root_finding.git
    cd root_finding
    ```
 
@@ -103,7 +103,7 @@ roots_newton = newton1d(f, df, x0=1.0, tol1=1e-6)
 print(f"Newton root: {roots_newton[0]}")
 ```
 
-For more examples, see the [Tutorial](https://harrisonlee0530.github.io/root_finding/tutorial.html) in our documentation.
+For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/docs/tutorial.html) in our documentation.
 
 ## Running Tests
 
@@ -156,13 +156,12 @@ quarto preview
 quarto render
 ```
 
-The documentation will be generated in the `qdocs/_site/` directory.
+The documentation will be generated in `gh-pages` branch.
 
 ### Automatic Deployment
 
 Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
 
-The deployed documentation is available at: https://harrisonlee0530.github.io/root_finding/
 
 ## Project Structure
 
