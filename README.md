@@ -17,7 +17,7 @@ root_finding is a Python package designed to compare two classical numerical roo
 
 ## Documentation
 
-Full documentation is available at: https://github.com/Harrisonlee0530/root_finding
+Full documentation is available at: [https://ubc-mds.github.io/root_finding/docs/](https://ubc-mds.github.io/root_finding/docs/)
 
 ## Package functionality
 
