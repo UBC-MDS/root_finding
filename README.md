@@ -7,7 +7,7 @@ root_finding is a Python package designed to compare two classical numerical roo
 
 ## Documentation
 
-Full documentation is available at: https://github.com/Harrisonlee0530/root_finding
+Full documentation is available at: https://harrisonlee0530.github.io/root_finding/
 
 ## Package functionality
 
@@ -29,13 +29,13 @@ The root_finding package provides a small set of one-dimensional root-finding to
 
 ### For Users
 
-You can install this package into your preferred Python environment using pip:
+To install this package directly from GitHub:
 
 ```bash
-pip install root_finding
+pip install git+https://github.com/Harrisonlee0530/root_finding.git
 ```
 
-*(Note: Package is currently under development and not yet published to PyPI)*
+*(Note: Package is currently under development and not yet published to PyPI. Once published, you will be able to install via `pip install root_finding`)*
 
 ### For Developers
 
@@ -68,14 +68,17 @@ To contribute to the development of this package:
    pip install -e .
    ```
 
+4. **Install testing dependencies** (required for running tests)
+   ```bash
+   pip install pytest pytest-cov pytest-xdist
+   ```
+
 ## Get started
 
 To use root_finding in your code:
 
 ```python
-import root_finding
-from root_finding.bisection.bisection import bisection
-from root_finding.newton1d import newton1d
+from root_finding import bisection, newton1d
 
 # Define a function: x^2 - 4
 def f(x):
@@ -97,7 +100,9 @@ For more examples, see the [Tutorial](https://harrisonlee0530.github.io/root_fin
 
 ## Running Tests
 
-We use pytest for testing. To run the test suite:
+We use pytest for testing. Make sure you have installed the testing dependencies first (see step 4 in the installation instructions above).
+
+To run the test suite:
 
 ```bash
 # Run all tests
@@ -106,7 +111,7 @@ pytest
 # Run tests with coverage report
 pytest --cov=root_finding --cov-report=term-missing --cov-report=xml
 
-# Run tests in parallel (faster)
+# Run tests in parallel (faster, requires pytest-xdist)
 pytest -n auto
 ```
 
