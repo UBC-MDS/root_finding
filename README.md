@@ -112,7 +112,7 @@ pytest -n auto
 
 ## Building Documentation
 
-Our documentation is built using Quarto and quartodoc and automatically deployed to GitHub Pages.
+Our documentation is built using Quarto and quartodoc.
 
 ### Prerequisites
 
@@ -134,7 +134,7 @@ Our documentation is built using Quarto and quartodoc and automatically deployed
 
 ```bash
 # Navigate to the documentation directory
-cd qdocs
+cd docs
 
 # Build the API reference
 quartodoc build
@@ -146,11 +146,11 @@ quarto preview
 quarto render
 ```
 
-The documentation will be generated in the `qdocs/_site/` directory.
+The documentation will be generated in the `docs/_site/` directory.
 
 ### Automatic Deployment
 
-Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
+Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the main branch. The deployment is handled by GitHub Actions workflows defined in `.github/workflows/deploy.yml` and `.github/workflows/docs.yml`.
 
 The deployed documentation is available at: https://harrisonlee0530.github.io/root_finding/
 
@@ -158,26 +158,60 @@ The deployed documentation is available at: https://harrisonlee0530.github.io/ro
 
 ```
 root_finding/
-├── src/root_finding/          # Source code
-│   ├── bisection/            # Bisection method implementation
+├── .github/                  # GitHub configuration
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   │   ├── 01-bug-report.yml
+│   │   └── config.yml
+│   ├── workflows/           # GitHub Actions workflows
+│   │   ├── deploy.yml       # Documentation deployment
+│   │   ├── docs.yml         # Documentation build
+│   │   └── pytest.yml       # Test automation
+│   └── PULL_REQUEST_TEMPLATE.md
+├── src/root_finding/        # Source code
+│   ├── bisection/          # Bisection method implementation
 │   │   ├── __init__.py
 │   │   ├── bisection.py
 │   │   └── bisection_find_roots.py
-│   ├── newton1d.py           # Newton-Raphson implementation
-│   ├── hybrid.py             # Hybrid method implementation
-│   └── plot_root.py          # Visualization tools
-├── tests/                    # Test suite
-├── qdocs/                    # Documentation source
-│   ├── _quarto.yml          # Quarto configuration
-│   ├── index.qmd            # Home page
-│   ├── tutorial.qmd         # Tutorial
-│   └── reference/           # Generated API reference
-├── .github/workflows/        # GitHub Actions workflows
-│   └── deploy.yml           # Documentation deployment
-├── pyproject.toml           # Project configuration
-├── environment.yml          # Conda environment specification
-└── README.md               # This file
+│   ├── __init__.py
+│   ├── hybrid.py           # Hybrid method implementation
+│   ├── newton1d.py         # Newton-Raphson implementation
+│   └── plot_root.py        # Visualization tools
+├── tests/                  # Test suite
+│   ├── unit/              # Unit tests
+│   │   ├── test_bisection.py
+│   │   ├── test_bisection_find_roots.py
+│   │   ├── test_example.py
+│   │   ├── test_hybrid.py
+│   │   ├── test_newton1d.py
+│   │   └── test_plot_root.py
+│   └── ...
+├── docs/                   # Documentation source (Quarto)
+│   ├── reference/         # API reference documentation
+│   │   ├── bisection.bisection.qmd
+│   │   ├── bisection.bisection_find_roots.qmd
+│   │   ├── hybrid.qmd
+│   │   ├── newton1d.qmd
+│   │   ├── plot_root.qmd
+│   │   └── ...
+│   ├── index.qmd          # Home page
+│   ├── reference.qmd      # API reference index
+│   └── tutorial.qmd       # Tutorial
+├── _quarto.yml            # Quarto configuration
+├── pyproject.toml         # Project configuration
+├── environment.yml        # Conda environment specification
+├── CHANGELOG.md           # Version history
+├── CODE_OF_CONDUCT.md     # Community guidelines
+├── CONTRIBUTING.md        # Contribution guidelines
+├── DEVELOPMENT.md         # Development documentation
+├── LICENSE                # MIT License
+└── README.md             # This file
 ```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Development Documentation](DEVELOPMENT.md) for details on how to contribute to this project.
+
+Please also review our [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
 ## Development Workflow
 
@@ -195,7 +229,7 @@ root_finding/
 
 4. **Update documentation** if needed
    ```bash
-   cd qdocs
+   cd docs
    quartodoc build
    quarto preview
    ```
