@@ -45,6 +45,12 @@ To install this package directly from GitHub:
 pip install git+https://github.com/UBC-MDS/root_finding.git
 ```
 
+To install this package from TestPyPI:
+
+```bash
+pip install -i https://test.pypi.org/simple/ root-finding
+```
+
 *(Note: Package is currently under development and not yet published to PyPI. Once published, you will be able to install via `pip install root_finding`)*
 
 ### For Developers
