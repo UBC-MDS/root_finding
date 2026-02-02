@@ -1,5 +1,12 @@
 """
 This is a module for testing the bisection_find_roots.py module
+
+The bisection method is a numerical method for finding the root of a function.
+The root of a function is where it crosses the x-axis (for single valued functions),
+and finding roots is analogous to solving equations. Not all equations are solvable
+by hand, and in these cases we must refer to numerical approximations. The
+bisection_find_roots method implements the bisection method over discrete intervals
+in a given range in an attempt to find multiple roots for a given function.
 """
 
 from root_finding.bisection.bisection_find_roots import bisection_find_roots
@@ -12,18 +19,30 @@ import numpy as np
 
 
 def func(x):
+    """
+    A function to test the correct root value are returned
+    """
     return 3 * x**3 + 4 * x**2 - 2 * x - 2
 
 
 def func_for_repeated_roots(x):
+    """A function used to check multiple values for the same roots
+    are not returned.
+    """
     return x**2 - 1
 
 
 def func_for_boundary_roots(x):
+    """
+    A function to test for roots at boundaries
+    """
     return x**2 - 4
 
 
 def func_no_roots(x):
+    """
+    A function that has no roots.
+    """
     return x**2 + 10
 
 
@@ -33,7 +52,7 @@ def func_no_roots(x):
 class TestBisectionFindRootsAccuracy:
 
     def test_finds_all_roots(self):
-        # Test the function returns the correct outputs
+        """Test the function returns the correct outputs (roots)"""
 
         roots = bisection_find_roots(func, xmin=-2, xmax=2, tol=1e-9, max_iter=500)
         actual = np.array([func(root) for root in roots])
@@ -56,7 +75,7 @@ class TestBisectionFindRootsAccuracy:
         assert np.allclose(roots_boundary, expected)
 
     def test_handles_duplicate_roots(self):
-        """Check function does not return duplicate roots in basic cases"""
+        """Check function does not return duplicate values for roots in basic cases."""
         roots_repeated = bisection_find_roots(
             func_for_repeated_roots, -3, 3, tol=1e-9, N=100
         )

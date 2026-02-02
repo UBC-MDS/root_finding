@@ -1,5 +1,12 @@
 """
 This is a module for testing the bisection.py module
+
+The bisection method is a numerical method for finding the root of a function.
+The root of a function is where it crosses the x-axis (for single valued functions),
+and finding roots is analogous to solving equations. Not all equations are solvable
+by hand, and in these cases we must refer to numerical approximations. The
+bisection section method is guaranteed to find a solution given certain restrictions,
+see the bisection method documentation for more information.
 """
 
 # from typing import Sequence
@@ -11,11 +18,14 @@ import pytest
 
 # Define function to teest bisection method
 def func(x):
+    """A function used to test for proper output values."""
     return 3 * x**3 + 4 * x**2 - 2 * x - 2
 
 
 # Use to test case when fmid == 0
 def func_2(x):
+    """A function used to test the case that our algorithim
+    lands directly on a root in a given iteration."""
     # y=0 at x=-1
     return 2 * x + 2
 
@@ -40,7 +50,7 @@ class TestBisectionAccuracy:
         assert func(root) == pytest.approx(0, abs=1e-6)
 
     def test_midpoint_is_root(self):
-        """Test case when f(xmid) is exactly 0."""
+        """Test case when algorithm lands directly on a root."""
         root = bisection(func_2, xmin=-2, xmax=0, tol=1e-9, max_iter=200)
         assert root == pytest.approx(-1.0, abs=1e-8)
 
@@ -64,19 +74,18 @@ class TestBisectionErrors:
             bisection(f, xmin, xmax, tol, max_iter)
 
     def test_convergence_failure(self):
-        """Test convergence failure with impossible tolerance"""
-        with pytest.raises(
-            RuntimeError, match=f"Failed to converge in 100 iterations."
-        ):
+        """Test convergence failure with impossible tolerance."""
+        with pytest.raises(RuntimeError, match="Failed to converge in 100 iterations."):
             bisection(func, 0, 2, tol=1e-200, max_iter=100)
 
     def test_invalid_range(self):
-        """Test case where xmin is greater than xmax"""
+        """Test case where xmin is greater than xmax."""
         with pytest.raises(ValueError, match="xmax should be greater than xmin"):
             bisection(func, xmin=2, xmax=0, tol=1e-9, max_iter=100)
 
     def test_no_root(self):
-        """Test case where f(xmin) and f(xmax) have same sign"""
+        """Test case where f(xmin) and f(xmax) have same sign.
+        In this case, no solution is guaranteed."""
         with pytest.raises(
             ValueError,
             match="Incorrect boundary values, fxmax x fxmin needs to be less than 0.",
