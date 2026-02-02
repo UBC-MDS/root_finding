@@ -42,7 +42,7 @@ The root_finding package provides a small set of one-dimensional root-finding to
 To install this package directly from GitHub:
 
 ```bash
-pip install git+https://github.com/Harrisonlee0530/root_finding.git
+pip install git+https://github.com/UBC-MDS/root_finding.git
 ```
 
 *(Note: Package is currently under development and not yet published to PyPI. Once published, you will be able to install via `pip install root_finding`)*
