@@ -110,6 +110,9 @@ For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/doc
 We use pytest for testing. To run the test suite:
 
 ```bash
+# Install tests dependencies in interactive mode
+pip install -e .[tests]
+
 # Run all tests
 pytest
 
