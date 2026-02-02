@@ -100,7 +100,7 @@ source = "vcs"
 raw-options = { version_scheme = "no-guess-dev", local_scheme = "no-local-version" }
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/pytest1/__version__.py"
+version-file = "src/root_finding/__version__.py"
 
 ######## Configure pytest for your test suite ########
 [tool.pytest.ini_options]
