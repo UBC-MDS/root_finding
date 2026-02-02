@@ -3,7 +3,9 @@ This is a module for testing the plot_root.py module.
 
 The tests verify that the plotting utility correctly visualizes the
 function, its roots (computed via the hybrid method), and returns
-valid Matplotlib objects with appropriate labels and annotations.
+valid Matplotlib objects with appropriate labels and annotations. 
+Parts of the tests and documentations are suggested and implemented 
+by ChatGPT.
 """
 
 import pytest

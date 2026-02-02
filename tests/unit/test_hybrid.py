@@ -3,7 +3,8 @@ This is a module for testing the hybrid.py module.
 
 The tests validate correctness, robustness, and error handling of the
 hybrid root-finding algorithm, which combines bisection and Newton-type
-methods. Parts of the tests are suggested and implemented by ChatGPT.
+methods. Parts of the tests and documentations are suggested and 
+implemented by ChatGPT.
 """
 
 import pytest
