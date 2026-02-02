@@ -39,13 +39,19 @@ The root_finding package provides a small set of one-dimensional root-finding to
 
 ### For Users
 
-You can install this package into your preferred Python environment using pip:
+To install this package directly from GitHub:
 
 ```bash
-pip install root_finding
+pip install git+https://github.com/UBC-MDS/root_finding.git
 ```
 
-*(Note: Package is currently under development and not yet published to PyPI)*
+To install this package from TestPyPI:
+
+```bash
+pip install -i https://test.pypi.org/simple/ root-finding
+```
+
+*(Note: Package is currently under development and not yet published to PyPI. Once published, you will be able to install via `pip install root_finding`)*
 
 ### For Developers
 
@@ -78,14 +84,17 @@ To contribute to the development of this package:
    pip install -e .
    ```
 
+4. **Install testing dependencies** (required for running tests)
+   ```bash
+   pip install pytest pytest-cov pytest-xdist
+   ```
+
 ## Get started
 
 To use root_finding in your code:
 
 ```python
-import root_finding
-from root_finding.bisection.bisection import bisection
-from root_finding.newton1d import newton1d
+from root_finding import bisection, newton1d
 
 # Define a function: x^2 - 4
 def f(x):
@@ -107,7 +116,9 @@ For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/doc
 
 ## Running Tests
 
-We use pytest for testing. To run the test suite:
+We use pytest for testing. Make sure you have installed the testing dependencies first (see step 4 in the installation instructions above).
+
+To run the test suite:
 
 ```bash
 # Install tests dependencies in interactive mode
@@ -119,13 +130,13 @@ pytest
 # Run tests with coverage report
 pytest --cov=root_finding --cov-report=term-missing --cov-report=xml
 
-# Run tests in parallel (faster)
+# Run tests in parallel (faster, requires pytest-xdist)
 pytest -n auto
 ```
 
 ## Building Documentation
 
-Our documentation is built using Quarto and quartodoc and automatically deployed to GitHub Pages.
+Our documentation is built using Quarto and quartodoc.
 
 ### Prerequisites
 
@@ -147,7 +158,7 @@ Our documentation is built using Quarto and quartodoc and automatically deployed
 
 ```bash
 # Navigate to the documentation directory
-cd qdocs
+cd docs
 
 # Build the API reference
 quartodoc build
@@ -163,33 +174,67 @@ The documentation will be generated in `gh-pages` branch.
 
 ### Automatic Deployment
 
-Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
+Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the main branch. The deployment is handled by GitHub Actions workflows defined in `.github/workflows/deploy.yml` and `.github/workflows/docs.yml`.
 
 
 ## Project Structure
 
 ```
 root_finding/
-├── src/root_finding/          # Source code
-│   ├── bisection/            # Bisection method implementation
+├── .github/                  # GitHub configuration
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   │   ├── 01-bug-report.yml
+│   │   └── config.yml
+│   ├── workflows/           # GitHub Actions workflows
+│   │   ├── deploy.yml       # Documentation deployment
+│   │   ├── docs.yml         # Documentation build
+│   │   └── pytest.yml       # Test automation
+│   └── PULL_REQUEST_TEMPLATE.md
+├── src/root_finding/        # Source code
+│   ├── bisection/          # Bisection method implementation
 │   │   ├── __init__.py
 │   │   ├── bisection.py
 │   │   └── bisection_find_roots.py
-│   ├── newton1d.py           # Newton-Raphson implementation
-│   ├── hybrid.py             # Hybrid method implementation
-│   └── plot_root.py          # Visualization tools
-├── tests/                    # Test suite
-├── qdocs/                    # Documentation source
-│   ├── _quarto.yml          # Quarto configuration
-│   ├── index.qmd            # Home page
-│   ├── tutorial.qmd         # Tutorial
-│   └── reference/           # Generated API reference
-├── .github/workflows/        # GitHub Actions workflows
-│   └── deploy.yml           # Documentation deployment
-├── pyproject.toml           # Project configuration
-├── environment.yml          # Conda environment specification
-└── README.md               # This file
+│   ├── __init__.py
+│   ├── hybrid.py           # Hybrid method implementation
+│   ├── newton1d.py         # Newton-Raphson implementation
+│   └── plot_root.py        # Visualization tools
+├── tests/                  # Test suite
+│   ├── unit/              # Unit tests
+│   │   ├── test_bisection.py
+│   │   ├── test_bisection_find_roots.py
+│   │   ├── test_example.py
+│   │   ├── test_hybrid.py
+│   │   ├── test_newton1d.py
+│   │   └── test_plot_root.py
+│   └── ...
+├── docs/                   # Documentation source (Quarto)
+│   ├── reference/         # API reference documentation
+│   │   ├── bisection.bisection.qmd
+│   │   ├── bisection.bisection_find_roots.qmd
+│   │   ├── hybrid.qmd
+│   │   ├── newton1d.qmd
+│   │   ├── plot_root.qmd
+│   │   └── ...
+│   ├── index.qmd          # Home page
+│   ├── reference.qmd      # API reference index
+│   └── tutorial.qmd       # Tutorial
+├── _quarto.yml            # Quarto configuration
+├── pyproject.toml         # Project configuration
+├── environment.yml        # Conda environment specification
+├── CHANGELOG.md           # Version history
+├── CODE_OF_CONDUCT.md     # Community guidelines
+├── CONTRIBUTING.md        # Contribution guidelines
+├── DEVELOPMENT.md         # Development documentation
+├── LICENSE                # MIT License
+└── README.md             # This file
 ```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Development Documentation](DEVELOPMENT.md) for details on how to contribute to this project.
+
+Please also review our [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
 ## Development Workflow
 
@@ -207,7 +252,7 @@ root_finding/
 
 4. **Update documentation** if needed
    ```bash
-   cd qdocs
+   cd docs
    quartodoc build
    quarto preview
    ```
