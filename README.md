@@ -63,14 +63,14 @@ To contribute to the development of this package:
    
    ```bash
    conda env create -f environment.yml
-   conda activate root_finding
+   conda activate root-finding
    ```
    
    Or if you use mamba (faster):
    
    ```bash
    mamba env create -f environment.yml
-   mamba activate root_finding
+   mamba activate root-finding
    ```
 
 3. **Install the package in development mode**
@@ -110,6 +110,9 @@ For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/doc
 We use pytest for testing. To run the test suite:
 
 ```bash
+# Install tests dependencies in interactive mode
+pip install -e .[tests]
+
 # Run all tests
 pytest
 
