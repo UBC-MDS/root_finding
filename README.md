@@ -63,14 +63,14 @@ To contribute to the development of this package:
    
    ```bash
    conda env create -f environment.yml
-   conda activate root_finding
+   conda activate root-finding
    ```
    
    Or if you use mamba (faster):
    
    ```bash
    mamba env create -f environment.yml
-   mamba activate root_finding
+   mamba activate root-finding
    ```
 
 3. **Install the package in development mode**
