@@ -1,5 +1,15 @@
 # Welcome to root_finding
 
+[![codecov](https://codecov.io/github/UBC-MDS/root_finding/graph/badge.svg?token=ILJqRBw9b6)](https://codecov.io/github/UBC-MDS/root_finding)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf66384c-bddd-4ef2-acfc-2245b5b66958/deploy-status)](https://app.netlify.com/projects/aesthetic-sherbet-903822/deploys)
+![Python Versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![TestPyPI version](https://img.shields.io/badge/TestPyPI-0.1.0-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Ruff](https://img.shields.io/badge/lint-ruff-red)
+
+
+
+
 ## Contributors
 Harrison Li, Devon Vorster, Li Pu
 
@@ -7,7 +17,7 @@ root_finding is a Python package designed to compare two classical numerical roo
 
 ## Documentation
 
-Full documentation is available at: https://github.com/Harrisonlee0530/root_finding
+Full documentation is available at: [https://ubc-mds.github.io/root_finding/docs/](https://ubc-mds.github.io/root_finding/docs/)
 
 ## Package functionality
 
@@ -43,7 +53,7 @@ To contribute to the development of this package:
 
 1. **Clone the repository**
    ```bash
-   git clone git@github.com:Harrisonlee0530/root_finding.git
+   git clone git@github.com:UBC-MDS/root_finding.git
    cd root_finding
    ```
 
@@ -93,7 +103,7 @@ roots_newton = newton1d(f, df, x0=1.0, tol1=1e-6)
 print(f"Newton root: {roots_newton[0]}")
 ```
 
-For more examples, see the [Tutorial](https://harrisonlee0530.github.io/root_finding/tutorial.html) in our documentation.
+For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/docs/tutorial.html) in our documentation.
 
 ## Running Tests
 
@@ -146,13 +156,12 @@ quarto preview
 quarto render
 ```
 
-The documentation will be generated in the `qdocs/_site/` directory.
+The documentation will be generated in `gh-pages` branch.
 
 ### Automatic Deployment
 
 Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
 
-The deployed documentation is available at: https://harrisonlee0530.github.io/root_finding/
 
 ## Project Structure
 
