@@ -1,0 +1,204 @@
+---
+title: "Project Retrospective"
+---
+
+## Overview
+
+This retrospective reflects on our experience developing the `root_finding` package. We examine what worked well, what could be improved, and what we learned about software development practices.
+
+---
+
+## Keep Doing: What is working and we should continue?
+
+### 1. Pull Request Workflow
+Our pull request and code review process worked really well. Having team members review each other's code before merging caught bugs early and helped everyone understand the full codebase, not just their own functions.
+
+**Why continue:** Catches issues before they reach main branch, shares knowledge across team.
+
+### 2. GitHub Actions for Automated Testing
+Running pytest automatically on every push and PR across multiple Python versions and operating systems was incredibly valuable. It caught platform-specific issues we wouldn't have found otherwise.
+
+**Why continue:** Ensures code quality without manual effort, tests across environments we don't have locally.
+
+### 3. Automated Documentation Deployment
+Having documentation automatically build and deploy to GitHub Pages on every merge meant our docs were always up-to-date. We never had to remember to manually rebuild or deploy.
+
+**Why continue:** Eliminates manual deployment work, keeps documentation synchronized with code.
+
+### 4. Clear Task Division
+Each person taking ownership of specific functions and their tests worked well. It allowed parallel development without stepping on each other's toes.
+
+**Why continue:** Enables efficient parallel work, clear accountability.
+
+---
+
+## Less Of: What do we want less of?
+
+### 1. Incomplete Initial Setup
+We started with a minimal `environment.yml` that only specified Python. This caused problems when peer reviewers tried to run tests and found pytest wasn't included.
+
+**What to reduce:** Starting projects without complete dependency specifications.
+
+**Better approach:** Include all development dependencies from the start, even if it feels like "extra work" initially.
+
+### 2. Assumptions About "Obvious" Things
+We assumed certain things were obvious (like how to install from GitHub, where documentation links should point) but peer review showed these weren't obvious at all.
+
+**What to reduce:** Making assumptions about what users know.
+
+**Better approach:** Test all instructions as if we're a brand new user who knows nothing about the project.
+
+### 3. Late Documentation Fixes
+We didn't catch documentation issues (broken links, wrong installation instructions) until peer review pointed them out.
+
+**What to reduce:** Treating documentation as an afterthought.
+
+**Better approach:** Verify all documentation claims actually work before considering something "done."
+
+---
+
+## More Of: What do we want to see more of?
+
+### 1. Comprehensive Testing
+We wrote about 10 unit tests, which covered basic functionality but missed some edge cases that peer review identified.
+
+**What we want more of:** More extensive test coverage, including edge cases and integration tests.
+
+**How to achieve:** Set coverage goals (e.g., >80%), write tests before or alongside code, include edge case testing.
+
+### 2. User Perspective in Development
+Peer review revealed several usability issues (complex import paths, broken links) that we didn't notice because we were too close to the project.
+
+**What we want more of:** Regular "fresh eyes" checks on documentation and user experience.
+
+**How to achieve:** Have someone unfamiliar with the project try following the README, test installation on a clean environment.
+
+### 3. Proactive Issue Prevention
+Most of our fixes came from reacting to peer review feedback rather than catching issues ourselves first.
+
+**What we want more of:** Catching issues before external review.
+
+**How to achieve:** Use automated tools (linters, link checkers), create checklists for common issues, test in clean environments.
+
+---
+
+## Stop Doing: What's not working and we should stop?
+
+### 1. Minimal Environment Specifications
+Having an `environment.yml` with only Python and nothing else created problems for everyone trying to contribute or test.
+
+**Why stop:** Makes it impossible for others to reproduce our development environment.
+
+**Replace with:** Complete environment specifications including all dependencies, testing tools, and documentation tools.
+
+### 2. Writing Documentation After Implementation
+We wrote code first, then tried to document it afterward, which led to documentation that didn't always match reality or user needs.
+
+**Why stop:** Results in documentation that's an afterthought rather than a guide.
+
+**Replace with:** Documentation-first or alongside-code approach. If we can't explain what a function does before writing it, we probably don't understand it well enough.
+
+### 3. Manual Verification of Changes
+We relied on manual testing to verify changes worked, which led to missing issues in different environments or scenarios.
+
+**Why stop:** Manual testing is incomplete and inconsistent.
+
+**Replace with:** Rely more on automated testing, add more test cases to catch issues automatically.
+
+---
+
+## Start Doing: What new things should we try out?
+
+### 1. Code Quality Tools
+**What:** Implement automated code formatting (black or ruff) and linting.
+
+**Why:** Would eliminate style discussions in code review, catch common bugs through static analysis.
+
+**How to implement:** Add to GitHub Actions, use pre-commit hooks for local enforcement.
+
+### 2. Documentation Testing
+**What:** Verify all documentation examples actually work, check all links are valid.
+
+**Why:** Prevents documentation drift and broken links like we experienced.
+
+**How to implement:** Use doctest for code examples, automated link checkers in CI.
+
+### 3. Complete Dependency Management
+**What:** Create comprehensive `environment.yml` and `requirements-dev.txt` files.
+
+**Why:** Makes it trivial for anyone to set up a working development environment.
+
+**How to implement:** List ALL dependencies including testing tools, documentation tools, and development utilities.
+
+### 4. User Testing Before Release
+**What:** Have someone unfamiliar with the project follow the README on a fresh system.
+
+**Why:** Catches usability issues before they reach users or reviewers.
+
+**How to implement:** Make it part of the release checklist, rotate who does the "fresh install test."
+
+### 5. Type Hints and Type Checking
+**What:** Add type hints to function signatures and use mypy for type checking.
+
+**Why:** Catches a whole class of bugs at development time, makes code more self-documenting.
+
+**How to implement:** Add gradually, start with new code and public APIs.
+
+---
+
+## Key Lessons Learned
+
+### Technical Lessons
+1. **Automation saves time and catches bugs** - GitHub Actions workflows were invaluable
+2. **Complete setup instructions are critical** - Incomplete `environment.yml` caused real friction
+3. **The public API matters** - Deep import paths made our package seem harder to use than it was
+4. **Multi-platform testing is essential** - Found issues on Windows that didn't show up on Mac
+
+### Process Lessons
+1. **Fresh perspectives are invaluable** - Peer review caught issues we were blind to
+2. **Documentation is part of the product** - Not an afterthought, needs same care as code
+3. **Small oversights compound** - Missing pytest dependency, broken links, wrong instructions all created friction
+4. **Test like a user, not like a developer** - We knew the workarounds, users don't
+
+### Team Lessons
+1. **Clear ownership works well** - Each person responsible for specific functions prevented conflicts
+2. **Code review shares knowledge** - Everyone learned about the full codebase through reviews
+3. **Communication prevents problems** - Discussing approach before implementing saved rework
+
+---
+
+## Action Items for Future Projects
+
+**Immediate (Do from project start):**
+- [ ] Create complete `environment.yml` with all dependencies
+- [ ] Write documentation alongside or before code
+- [ ] Test installation instructions on clean environment
+- [ ] Verify all links in documentation actually work
+
+**Short-term (Add within first week):**
+- [ ] Set up automated code formatting
+- [ ] Implement linting in CI
+- [ ] Add more comprehensive test coverage
+- [ ] Create pre-commit hooks
+
+**Medium-term (As project matures):**
+- [ ] Add type hints to public API
+- [ ] Implement automated link checking
+- [ ] Set up performance benchmarking
+- [ ] Create contribution checklist
+
+---
+
+## Conclusion
+
+The most important insight from this project: **Small details matter tremendously for user experience.** Things that seem minor to us as developers—a missing dependency, a broken link, a complex import path—create real friction for users and contributors.
+
+The tools and automation we put in place (GitHub Actions, automated documentation, pull request workflow) worked excellently. The gaps were in completeness—complete dependency specifications, complete testing, complete documentation verification.
+
+For future projects, we should:
+1. **Assume nothing is obvious** - Test everything from a fresh user's perspective
+2. **Automate quality checks** - Don't rely on manual verification
+3. **Invest in setup upfront** - Complete environment files, comprehensive testing, thorough documentation
+4. **Treat documentation as code** - Same rigor, same review process, same testing
+
+These aren't complex lessons, but they're important ones. The difference between a frustrating package and a pleasant one often comes down to these details.
