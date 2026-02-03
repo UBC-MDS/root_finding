@@ -11,6 +11,8 @@ website:
         text: Tutorial
       - href: docs/reference/index.qmd
         text: Reference
+      - href: docs/project-retrospective.qmd
+        text: Retrospective
 
 format:
   html:
