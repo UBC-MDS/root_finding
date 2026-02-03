@@ -1,6 +1,10 @@
 """
-This is a module for testing the hybrid.py module
-Parts of the tests are suggested and implemented by ChatGPT
+This is a module for testing the hybrid.py module.
+
+The tests validate correctness, robustness, and error handling of the
+hybrid root-finding algorithm, which combines bisection and Newton-type
+methods. Parts of the tests and documentations are suggested and 
+implemented by ChatGPT.
 """
 
 import pytest
@@ -9,6 +13,14 @@ from root_finding.hybrid import hybrid
 
 
 def test_bisection_fail():
+    """
+    Test that the hybrid method correctly finds a root when the bisection
+    method alone would fail due to lack of sign change in the interval.
+
+    The function f(x) = x^2 has a root at x = 0 but does not change sign
+    on [-3, 3]. The hybrid method should still converge using derivative
+    information.
+    """
 
     def f(x):
         return x**2
@@ -24,6 +36,12 @@ def test_bisection_fail():
 
 
 def test_correct_roots_2():
+    """
+    Test that the hybrid method correctly identifies two distinct real roots
+    within the interval.
+
+    The quadratic function f(x) = x^2 - 4 has roots at x = -2 and x = 2.
+    """
 
     def f(x):
         return x**2 - 4
@@ -39,6 +57,11 @@ def test_correct_roots_2():
 
 
 def test_correct_roots_3():
+    """
+    Test that the hybrid method correctly finds three real roots.
+
+    The cubic function f(x) = x^3 - x has roots at x = -1, 0, and 1.
+    """
 
     def f(x):
         return x**3 - x
@@ -54,10 +77,12 @@ def test_correct_roots_3():
 
 
 def func(x):
+    """Polynomial test function with real roots."""
     return 3 * x**3 + 4 * x**2 - 2 * x - 2
 
 
 def dfdx(x):
+    """Derivative of the polynomial test function."""
     return 9 * x**2 + 8 * x - 2
 
 
@@ -79,7 +104,11 @@ def dfdx(x):
 def test_bad_input_type_errors(
     func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n
 ):
-    """Test cases where input is not the expected type."""
+    """
+    Test that the hybrid function raises TypeError when inputs
+    are of incorrect types (e.g., strings instead of numbers,
+    non-callable functions).
+    """
     with pytest.raises(TypeError):
         hybrid(func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n)
 
@@ -98,12 +127,19 @@ def test_bad_input_type_errors(
 def test_bad_input_value_errors(
     func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n
 ):
-    """Test cases where input is not the expected type."""
+    """
+    Test that the hybrid function raises ValueError when inputs
+    have invalid numerical values (e.g., negative iteration counts).
+    """
     with pytest.raises(ValueError):
         hybrid(func, dfdx, xmin, xmax, tol1, tol2, max_iter1, max_iter2, n)
 
 
 def test_xmax_less_than_xmin():
+    """
+    Test that the hybrid function raises ValueError when the upper
+    bound of the interval is less than the lower bound.
+    """
     with pytest.raises(ValueError):
         hybrid(
             f=lambda x: x - 1,
@@ -116,6 +152,10 @@ def test_xmax_less_than_xmin():
 
 
 def test_output_is_finite_array():
+    """
+    Test that the output of the hybrid function is a finite array-like
+    structure containing no NaN or infinite values.
+    """
 
     def f(x):
         return x**2 - 2
@@ -130,6 +170,12 @@ def test_output_is_finite_array():
 
 
 def test_close_roots():
+    """
+    Test that the hybrid method can resolve closely spaced roots.
+
+    The function has two roots very close to zero, testing numerical
+    stability and root separation.
+    """
 
     def f(x):
         return (x - 1e-4) * (x + 1e-4)
@@ -144,6 +190,11 @@ def test_close_roots():
 
 
 def test_transcendental_function():
+    """
+    Test the hybrid method on a transcendental equation.
+
+    The equation cos(x) - x = 0 has a well-known root near 0.739085.
+    """
 
     def f(x):
         return np.cos(x) - x
@@ -158,6 +209,10 @@ def test_transcendental_function():
 
 
 def test_duplicate_bisection_roots_collapsed():
+    """
+    Test that duplicate roots produced during bisection are correctly
+    merged into a single root in the final output.
+    """
 
     def f(x):
         return x**2 - 1
@@ -173,6 +228,10 @@ def test_duplicate_bisection_roots_collapsed():
 
 
 def test_root_at_interval_boundary():
+    """
+    Test that roots located exactly at the boundaries of the interval
+    are correctly detected.
+    """
 
     def f(x):
         return x * (x - 2)
@@ -187,6 +246,10 @@ def test_root_at_interval_boundary():
 
 
 def test_no_roots_in_interval():
+    """
+    Test that the hybrid function raises a RuntimeError when no real
+    roots exist within the given interval.
+    """
 
     def f(x):
         return x**2 + 1

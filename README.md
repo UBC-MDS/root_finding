@@ -1,5 +1,15 @@
 # Welcome to root_finding
 
+[![codecov](https://codecov.io/github/UBC-MDS/root_finding/graph/badge.svg?token=ILJqRBw9b6)](https://codecov.io/github/UBC-MDS/root_finding)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf66384c-bddd-4ef2-acfc-2245b5b66958/deploy-status)](https://app.netlify.com/projects/aesthetic-sherbet-903822/deploys)
+![Python Versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![TestPyPI version](https://img.shields.io/badge/TestPyPI-0.1.0-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Ruff](https://img.shields.io/badge/lint-ruff-red)
+
+
+
+
 ## Contributors
 Harrison Li, Devon Vorster, Li Pu
 
@@ -7,7 +17,7 @@ root_finding is a Python package designed to compare two classical numerical roo
 
 ## Documentation
 
-Full documentation is available at: https://github.com/Harrisonlee0530/root_finding
+Full documentation is available at: [https://ubc-mds.github.io/root_finding/docs/](https://ubc-mds.github.io/root_finding/docs/)
 
 ## Package functionality
 
@@ -29,13 +39,19 @@ The root_finding package provides a small set of one-dimensional root-finding to
 
 ### For Users
 
-You can install this package into your preferred Python environment using pip:
+To install this package directly from GitHub:
 
 ```bash
-pip install root_finding
+pip install git+https://github.com/UBC-MDS/root_finding.git
 ```
 
-*(Note: Package is currently under development and not yet published to PyPI)*
+To install this package from TestPyPI:
+
+```bash
+pip install -i https://test.pypi.org/simple/ root-finding
+```
+
+*(Note: Package is currently under development and not yet published to PyPI. Once published, you will be able to install via `pip install root_finding`)*
 
 ### For Developers
 
@@ -43,7 +59,7 @@ To contribute to the development of this package:
 
 1. **Clone the repository**
    ```bash
-   git clone git@github.com:Harrisonlee0530/root_finding.git
+   git clone git@github.com:UBC-MDS/root_finding.git
    cd root_finding
    ```
 
@@ -53,14 +69,14 @@ To contribute to the development of this package:
    
    ```bash
    conda env create -f environment.yml
-   conda activate root_finding
+   conda activate root-finding
    ```
    
    Or if you use mamba (faster):
    
    ```bash
    mamba env create -f environment.yml
-   mamba activate root_finding
+   mamba activate root-finding
    ```
 
 3. **Install the package in development mode**
@@ -68,14 +84,17 @@ To contribute to the development of this package:
    pip install -e .
    ```
 
+4. **Install testing dependencies** (required for running tests)
+   ```bash
+   pip install pytest pytest-cov pytest-xdist
+   ```
+
 ## Get started
 
 To use root_finding in your code:
 
 ```python
-import root_finding
-from root_finding.bisection.bisection import bisection
-from root_finding.newton1d import newton1d
+from root_finding import bisection, newton1d
 
 # Define a function: x^2 - 4
 def f(x):
@@ -93,26 +112,31 @@ roots_newton = newton1d(f, df, x0=1.0, tol1=1e-6)
 print(f"Newton root: {roots_newton[0]}")
 ```
 
-For more examples, see the [Tutorial](https://harrisonlee0530.github.io/root_finding/tutorial.html) in our documentation.
+For more examples, see the [Tutorial](https://ubc-mds.github.io/root_finding/docs/tutorial.html) in our documentation.
 
 ## Running Tests
 
-We use pytest for testing. To run the test suite:
+We use pytest for testing. Make sure you have installed the testing dependencies first (see step 4 in the installation instructions above).
+
+To run the test suite:
 
 ```bash
+# Install tests dependencies in interactive mode
+pip install -e .[tests]
+
 # Run all tests
 pytest
 
 # Run tests with coverage report
 pytest --cov=root_finding --cov-report=term-missing --cov-report=xml
 
-# Run tests in parallel (faster)
+# Run tests in parallel (faster, requires pytest-xdist)
 pytest -n auto
 ```
 
 ## Building Documentation
 
-Our documentation is built using Quarto and quartodoc and automatically deployed to GitHub Pages.
+Our documentation is built using Quarto and quartodoc.
 
 ### Prerequisites
 
@@ -134,7 +158,7 @@ Our documentation is built using Quarto and quartodoc and automatically deployed
 
 ```bash
 # Navigate to the documentation directory
-cd qdocs
+cd docs
 
 # Build the API reference
 quartodoc build
@@ -146,38 +170,71 @@ quarto preview
 quarto render
 ```
 
-The documentation will be generated in the `qdocs/_site/` directory.
+The documentation will be generated in `gh-pages` branch.
 
 ### Automatic Deployment
 
-Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
+Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the main branch. The deployment is handled by GitHub Actions workflows defined in `.github/workflows/deploy.yml` and `.github/workflows/docs.yml`.
 
-The deployed documentation is available at: https://harrisonlee0530.github.io/root_finding/
 
 ## Project Structure
 
 ```
 root_finding/
-├── src/root_finding/          # Source code
-│   ├── bisection/            # Bisection method implementation
+├── .github/                  # GitHub configuration
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   │   ├── 01-bug-report.yml
+│   │   └── config.yml
+│   ├── workflows/           # GitHub Actions workflows
+│   │   ├── deploy.yml       # Documentation deployment
+│   │   ├── docs.yml         # Documentation build
+│   │   └── pytest.yml       # Test automation
+│   └── PULL_REQUEST_TEMPLATE.md
+├── src/root_finding/        # Source code
+│   ├── bisection/          # Bisection method implementation
 │   │   ├── __init__.py
 │   │   ├── bisection.py
 │   │   └── bisection_find_roots.py
-│   ├── newton1d.py           # Newton-Raphson implementation
-│   ├── hybrid.py             # Hybrid method implementation
-│   └── plot_root.py          # Visualization tools
-├── tests/                    # Test suite
-├── qdocs/                    # Documentation source
-│   ├── _quarto.yml          # Quarto configuration
-│   ├── index.qmd            # Home page
-│   ├── tutorial.qmd         # Tutorial
-│   └── reference/           # Generated API reference
-├── .github/workflows/        # GitHub Actions workflows
-│   └── deploy.yml           # Documentation deployment
-├── pyproject.toml           # Project configuration
-├── environment.yml          # Conda environment specification
-└── README.md               # This file
+│   ├── __init__.py
+│   ├── hybrid.py           # Hybrid method implementation
+│   ├── newton1d.py         # Newton-Raphson implementation
+│   └── plot_root.py        # Visualization tools
+├── tests/                  # Test suite
+│   ├── unit/              # Unit tests
+│   │   ├── test_bisection.py
+│   │   ├── test_bisection_find_roots.py
+│   │   ├── test_example.py
+│   │   ├── test_hybrid.py
+│   │   ├── test_newton1d.py
+│   │   └── test_plot_root.py
+│   └── ...
+├── docs/                   # Documentation source (Quarto)
+│   ├── reference/         # API reference documentation
+│   │   ├── bisection.bisection.qmd
+│   │   ├── bisection.bisection_find_roots.qmd
+│   │   ├── hybrid.qmd
+│   │   ├── newton1d.qmd
+│   │   ├── plot_root.qmd
+│   │   └── ...
+│   ├── index.qmd          # Home page
+│   ├── reference.qmd      # API reference index
+│   └── tutorial.qmd       # Tutorial
+├── _quarto.yml            # Quarto configuration
+├── pyproject.toml         # Project configuration
+├── environment.yml        # Conda environment specification
+├── CHANGELOG.md           # Version history
+├── CODE_OF_CONDUCT.md     # Community guidelines
+├── CONTRIBUTING.md        # Contribution guidelines
+├── DEVELOPMENT.md         # Development documentation
+├── LICENSE                # MIT License
+└── README.md             # This file
 ```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Development Documentation](DEVELOPMENT.md) for details on how to contribute to this project.
+
+Please also review our [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
 ## Development Workflow
 
@@ -195,7 +252,7 @@ root_finding/
 
 4. **Update documentation** if needed
    ```bash
-   cd qdocs
+   cd docs
    quartodoc build
    quarto preview
    ```

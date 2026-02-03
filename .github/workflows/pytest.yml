@@ -25,6 +25,7 @@ jobs:
     
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ['3.10', '3.11', '3.12', '3.13']
 
     # Steps represent a sequence of tasks that will be executed as 
@@ -49,7 +50,12 @@ jobs:
       # Run pytest with coverage
       - name: Run tests with coverage
         run: |
-          pytest --cov --cov-report=term --cov-branch
+          pytest --cov --cov-report=xml --cov-branch
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       # Run linter
       - name: Run linter

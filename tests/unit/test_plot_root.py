@@ -1,5 +1,11 @@
 """
-This is a module for testing the plot_root.py module
+This is a module for testing the plot_root.py module.
+
+The tests verify that the plotting utility correctly visualizes the
+function, its roots (computed via the hybrid method), and returns
+valid Matplotlib objects with appropriate labels and annotations. 
+Parts of the tests and documentations are suggested and implemented 
+by ChatGPT.
 """
 
 import pytest
@@ -10,6 +16,13 @@ from root_finding.plot_root import plot_root
 
 
 def test_plot():
+    """
+    Test that plot_root returns valid Matplotlib Figure and Axes objects.
+
+    This is a basic smoke test to ensure the plotting function executes
+    without errors for a well-behaved function and returns the expected
+    Matplotlib objects.
+    """
     f = lambda x: x**3 - x
     df = lambda x: 3 * x**2 - 1
     xmin, xmax = -2, 2
@@ -21,6 +34,15 @@ def test_plot():
 
 
 def test_plot_root_basic():
+    """
+    Test that plot_root correctly visualizes a function with two real roots.
+
+    The test checks:
+    - The returned objects are Matplotlib Figure and Axes
+    - The function curve is plotted and labeled
+    - The correct number of root markers are displayed
+    - Axis labels and title are properly set
+    """
     # Simple quadratic function with two roots
     f = lambda x: x**2 - 4
     df = lambda x: 2 * x
@@ -50,6 +72,12 @@ def test_plot_root_basic():
 
 
 def test_plot_root_single_root():
+    """
+    Test that plot_root correctly handles and displays a single root.
+
+    The quadratic f(x) = x^2 has one real root at x = 0. The test verifies
+    that exactly one root marker is plotted.
+    """
     # Quadratic with a single root at zero
     f = lambda x: x**2
     df = lambda x: 2 * x
