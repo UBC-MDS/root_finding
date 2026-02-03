@@ -56,165 +56,235 @@
     "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
   },
   {
-    "objectID": "docs/reference/newton1d.newton1d.html",
-    "href": "docs/reference/newton1d.newton1d.html",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "newton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
-  },
-  {
-    "objectID": "docs/reference/newton1d.newton1d.html#parameters",
-    "href": "docs/reference/newton1d.newton1d.html#parameters",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100"
-  },
-  {
-    "objectID": "docs/reference/newton1d.newton1d.html#returns",
-    "href": "docs/reference/newton1d.newton1d.html#returns",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f."
-  },
-  {
-    "objectID": "docs/reference/newton1d.newton1d.html#notes",
-    "href": "docs/reference/newton1d.newton1d.html#notes",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "The Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge."
-  },
-  {
-    "objectID": "docs/reference/newton1d.newton1d.html#raises",
-    "href": "docs/reference/newton1d.newton1d.html#raises",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations."
-  },
-  {
-    "objectID": "docs/reference/newton1d.newton1d.html#examples",
-    "href": "docs/reference/newton1d.newton1d.html#examples",
-    "title": "newton1d.newton1d",
-    "section": "",
-    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
-  },
-  {
-    "objectID": "docs/reference/plot_root.plot_root.html",
-    "href": "docs/reference/plot_root.plot_root.html",
-    "title": "plot_root.plot_root",
-    "section": "",
-    "text": "plot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
-  },
-  {
-    "objectID": "docs/reference/plot_root.plot_root.html#parameters",
-    "href": "docs/reference/plot_root.plot_root.html#parameters",
-    "title": "plot_root.plot_root",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50"
-  },
-  {
-    "objectID": "docs/reference/plot_root.plot_root.html#returns",
-    "href": "docs/reference/plot_root.plot_root.html#returns",
-    "title": "plot_root.plot_root",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot."
-  },
-  {
-    "objectID": "docs/reference/plot_root.plot_root.html#examples",
-    "href": "docs/reference/plot_root.plot_root.html#examples",
-    "title": "plot_root.plot_root",
-    "section": "",
-    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
-  },
-  {
-    "objectID": "docs/reference/plot_root.html",
-    "href": "docs/reference/plot_root.html",
-    "title": "plot_root",
-    "section": "",
-    "text": "plot_root\nA module that provides visualization tools for root finding algorithms.\n\n\n\n\n\nName\nDescription\n\n\n\n\nplot_root\nPlot a scalar function and visualize its roots using a hybrid\n\n\n\n\n\nplot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
-  },
-  {
-    "objectID": "docs/reference/plot_root.html#functions",
-    "href": "docs/reference/plot_root.html#functions",
-    "title": "plot_root",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nplot_root\nPlot a scalar function and visualize its roots using a hybrid\n\n\n\n\n\nplot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
-  },
-  {
-    "objectID": "docs/reference/index.html",
-    "href": "docs/reference/index.html",
+    "objectID": "docs/reference.html",
+    "href": "docs/reference.html",
     "title": "API Reference",
     "section": "",
-    "text": "Root finding using bisection method\n\n\n\nbisection.bisection.bisection\nFind a root of a scalar function using the bisection method.\n\n\nbisection.bisection_find_roots.bisection_find_roots\nFind multiple roots of a scalar function using the bisection method.\n\n\n\n\n\n\nRoot finding using Newton-Raphson method\n\n\n\nnewton1d.newton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\nRoot finding using hybrid Bisection-Newton method\n\n\n\nhybrid.hybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\n\nTools for plotting root finding results\n\n\n\nplot_root.plot_root\nPlot a scalar function and visualize its roots using a hybrid"
+    "text": "{{&lt; quartodoc-ref &gt;}}"
   },
   {
-    "objectID": "docs/reference/index.html#bisection-method",
-    "href": "docs/reference/index.html#bisection-method",
-    "title": "API Reference",
+    "objectID": "docs/reference/hybrid.hybrid.html",
+    "href": "docs/reference/hybrid.hybrid.html",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "Root finding using bisection method\n\n\n\nbisection.bisection.bisection\nFind a root of a scalar function using the bisection method.\n\n\nbisection.bisection_find_roots.bisection_find_roots\nFind multiple roots of a scalar function using the bisection method."
+    "text": "hybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
   },
   {
-    "objectID": "docs/reference/index.html#newtons-method",
-    "href": "docs/reference/index.html#newtons-method",
-    "title": "API Reference",
+    "objectID": "docs/reference/hybrid.hybrid.html#parameters",
+    "href": "docs/reference/hybrid.hybrid.html#parameters",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "Root finding using Newton-Raphson method\n\n\n\nnewton1d.newton1d\nFind roots of a scalar function using Newton–Raphson."
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50"
   },
   {
-    "objectID": "docs/reference/index.html#hybrid-method",
-    "href": "docs/reference/index.html#hybrid-method",
-    "title": "API Reference",
+    "objectID": "docs/reference/hybrid.hybrid.html#returns",
+    "href": "docs/reference/hybrid.hybrid.html#returns",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "Root finding using hybrid Bisection-Newton method\n\n\n\nhybrid.hybrid\nFind multiple roots of a scalar function using a hybrid"
+    "text": "Name\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found."
   },
   {
-    "objectID": "docs/reference/index.html#visualization",
-    "href": "docs/reference/index.html#visualization",
-    "title": "API Reference",
+    "objectID": "docs/reference/hybrid.hybrid.html#notes",
+    "href": "docs/reference/hybrid.hybrid.html#notes",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "Tools for plotting root finding results\n\n\n\nplot_root.plot_root\nPlot a scalar function and visualize its roots using a hybrid"
+    "text": "The hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection."
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html",
-    "href": "docs/reference/bisection.bisection.bisection.html",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/hybrid.hybrid.html#see-also",
+    "href": "docs/reference/hybrid.hybrid.html#see-also",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "bisection.bisection.bisection(f, xmin, xmax, tol=1e-09, max_iter=500)\nFind a root of a scalar function using the bisection method.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance. Convergence is achieved when \\|xmax - xmin\\| &lt; tol. Default is 1e-9.\n1e-09\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 500.\n500\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroot\nfloat\nEstimated root of the function f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the initial interval [xmin, xmax] does not bracket a root (that is, if f(xmin) and f(xmax) have the same sign).\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\n\n\n\nThe bisection method requires the root to be enclosed within the initial interval [xmin, xmax] such that:\n:math:f(x_{\\min}) \\cdot f(x_{\\max}) &lt; 0\nConvergence is guaranteed for continuous functions when this condition is satisfied and:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\n\n\n\n&gt;&gt;&gt; root = bisection(lambda x: 3*x**3 + 4*x**2 - 2*x - 2, 0, 2, max_iter=500)\n&gt;&gt;&gt; f\"{root:.5f}\"\n'0.74827'"
+    "text": "bisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement."
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html#parameters",
-    "href": "docs/reference/bisection.bisection.bisection.html#parameters",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/hybrid.hybrid.html#examples",
+    "href": "docs/reference/hybrid.hybrid.html#examples",
+    "title": "hybrid.hybrid",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance. Convergence is achieved when \\|xmax - xmin\\| &lt; tol. Default is 1e-9.\n1e-09\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 500.\n500"
+    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html#returns",
-    "href": "docs/reference/bisection.bisection.bisection.html#returns",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/hybrid.html",
+    "href": "docs/reference/hybrid.html",
+    "title": "hybrid",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nroot\nfloat\nEstimated root of the function f."
+    "text": "hybrid\nA module that implements a root finding algorithm using Bisection and Newton-Raphson method combined.\n\n\n\n\n\nName\nDescription\n\n\n\n\nhybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\nhybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html#raises",
-    "href": "docs/reference/bisection.bisection.bisection.html#raises",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/hybrid.html#functions",
+    "href": "docs/reference/hybrid.html#functions",
+    "title": "hybrid",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\n\nValueError\nIf the initial interval [xmin, xmax] does not bracket a root (that is, if f(xmin) and f(xmax) have the same sign).\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types."
+    "text": "Name\nDescription\n\n\n\n\nhybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\nhybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html#notes",
-    "href": "docs/reference/bisection.bisection.bisection.html#notes",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/newton1d.html",
+    "href": "docs/reference/newton1d.html",
+    "title": "newton1d",
     "section": "",
-    "text": "The bisection method requires the root to be enclosed within the initial interval [xmin, xmax] such that:\n:math:f(x_{\\min}) \\cdot f(x_{\\max}) &lt; 0\nConvergence is guaranteed for continuous functions when this condition is satisfied and:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}"
+    "text": "newton1d\nA module that implements a root finding algorithm using Newton-Raphson method.\n\n\n\n\n\nName\nDescription\n\n\n\n\nnewton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\nnewton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
   },
   {
-    "objectID": "docs/reference/bisection.bisection.bisection.html#examples",
-    "href": "docs/reference/bisection.bisection.bisection.html#examples",
-    "title": "bisection.bisection.bisection",
+    "objectID": "docs/reference/newton1d.html#functions",
+    "href": "docs/reference/newton1d.html#functions",
+    "title": "newton1d",
     "section": "",
-    "text": "&gt;&gt;&gt; root = bisection(lambda x: 3*x**3 + 4*x**2 - 2*x - 2, 0, 2, max_iter=500)\n&gt;&gt;&gt; f\"{root:.5f}\"\n'0.74827'"
+    "text": "Name\nDescription\n\n\n\n\nnewton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\nnewton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "bisection.bisection_find_roots.bisection_find_roots(\n    f,\n    xmin,\n    xmax,\n    tol=1e-06,\n    max_iter=100,\n    N=100,\n)\nFind multiple roots of a scalar function using the bisection method.\nThe interval [xmin, xmax] is split into N-1 subintervals, and each subinterval is checked for a sign change indicating a root.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance for the bisection method. The method converges when \\|xmax - xmin\\| &lt; tol. Default is 1e-6.\n1e-06\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 100.\n100\n\n\nN\nint\nNumber of subintervals. Default is 100 (99 intervals).\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nnumpy.ndarray\nEstimated roots of the function f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\nValueError\nIf xmax &lt;= xmin.\n\n\n\n\n\n\nThe bisection method requires that a root be enclosed within an interval [a, b] such that f(a) * f(b) &lt; 0.\nConvergence is achieved when:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\nWhen searching for multiple roots, this method:\n\nIs not guaranteed to find all roots\nCannot detect roots with multiplicity greater than one (e.g. x**2)\nMay return duplicate roots\n\n\n\n\nFind two simple roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)\n&gt;&gt;&gt; roots\narray([-2.,  2.])\nBisection may fail with large intervals:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=100)\n&gt;&gt;&gt; roots\narray([])\nSmaller intervals recover the roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=1000)\n&gt;&gt;&gt; roots\narray([-0.01,  0.01])\nDuplicate roots may be returned:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3,\n...                              tol=1e-9, N=100)\n&gt;&gt;&gt; roots\narray([-1., -1.,  1.,  1.])"
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#parameters",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#parameters",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance for the bisection method. The method converges when \\|xmax - xmin\\| &lt; tol. Default is 1e-6.\n1e-06\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 100.\n100\n\n\nN\nint\nNumber of subintervals. Default is 100 (99 intervals).\n100"
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#returns",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#returns",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nroots\nnumpy.ndarray\nEstimated roots of the function f."
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#raises",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#raises",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\nValueError\nIf xmax &lt;= xmin."
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#notes",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#notes",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "The bisection method requires that a root be enclosed within an interval [a, b] such that f(a) * f(b) &lt; 0.\nConvergence is achieved when:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\nWhen searching for multiple roots, this method:\n\nIs not guaranteed to find all roots\nCannot detect roots with multiplicity greater than one (e.g. x**2)\nMay return duplicate roots"
+  },
+  {
+    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#examples",
+    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#examples",
+    "title": "bisection.bisection_find_roots.bisection_find_roots",
+    "section": "",
+    "text": "Find two simple roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)\n&gt;&gt;&gt; roots\narray([-2.,  2.])\nBisection may fail with large intervals:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=100)\n&gt;&gt;&gt; roots\narray([])\nSmaller intervals recover the roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=1000)\n&gt;&gt;&gt; roots\narray([-0.01,  0.01])\nDuplicate roots may be returned:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3,\n...                              tol=1e-9, N=100)\n&gt;&gt;&gt; roots\narray([-1., -1.,  1.,  1.])"
+  },
+  {
+    "objectID": "docs/index.html",
+    "href": "docs/index.html",
+    "title": "root_finding",
+    "section": "",
+    "text": "A Python package for finding roots of scalar functions using various numerical methods."
+  },
+  {
+    "objectID": "docs/index.html#welcome-to-root_finding",
+    "href": "docs/index.html#welcome-to-root_finding",
+    "title": "root_finding",
+    "section": "",
+    "text": "A Python package for finding roots of scalar functions using various numerical methods."
+  },
+  {
+    "objectID": "docs/index.html#features",
+    "href": "docs/index.html#features",
+    "title": "root_finding",
+    "section": "Features",
+    "text": "Features\n\nBisection Method: Robust root finding using interval bisection\nNewton-Raphson Method: Fast convergence using derivatives\n\nHybrid Method: Combines bisection and Newton-Raphson for reliability and speed\nVisualization Tools: Plot functions and visualize root finding results"
+  },
+  {
+    "objectID": "docs/index.html#quick-start",
+    "href": "docs/index.html#quick-start",
+    "title": "root_finding",
+    "section": "Quick Start",
+    "text": "Quick Start\n\nInstallation\npip install root_finding\n\n\nBasic Usage\nfrom root_finding.bisection.bisection import bisection\n\n# Define a function\ndef f(x):\n    return x**2 - 4\n\n# Find root in interval [0, 3]\nroot = bisection(f, xmin=0, xmax=3, tol=1e-6)\nprint(f\"Root: {root}\")  # Should be approximately 2.0"
+  },
+  {
+    "objectID": "docs/index.html#documentation",
+    "href": "docs/index.html#documentation",
+    "title": "root_finding",
+    "section": "Documentation",
+    "text": "Documentation\n\nTutorial: Learn how to use the package\nAPI Reference: Complete API documentation"
+  },
+  {
+    "objectID": "docs/index.html#github-repository",
+    "href": "docs/index.html#github-repository",
+    "title": "root_finding",
+    "section": "GitHub Repository",
+    "text": "GitHub Repository\nVisit our GitHub repository for source code and to report issues."
+  },
+  {
+    "objectID": "CONTRIBUTING.html",
+    "href": "CONTRIBUTING.html",
+    "title": "Contributing",
+    "section": "",
+    "text": "Contributions of all kinds are welcome here, and they are greatly appreciated! Every little bit helps, and credit will always be given.\n\n\nYou can contribute in many ways, for example:\n\nReport bugs\nFix Bugs\nImplement Features\nWrite Documentation\nSubmit Feedback\n\n\n\nReport bugs at https://github.com/Harrisonlee0530/root_finding/issues.\nIf you are reporting a bug, please follow the template guidelines. The more detailed your report, the easier and thus faster we can help you.\n\n\n\nLook through the GitHub issues for bugs. Anything labelled with bug and help wanted is open to whoever wants to implement it. When you decide to work on such an issue, please assign yourself to it and add a comment that you’ll be working on that, too. If you see another issue without the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nLook through the GitHub issues for features. Anything labelled with enhancement and help wanted is open to whoever wants to implement it. As for fixing bugs, please assign yourself to the issue and add a comment that you’ll be working on that, too. If another enhancement catches your fancy, but it doesn’t have the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nroot_finding could always use more documentation, whether as part of the official documentation, in docstrings, or even on the web in blog posts, articles, and such. Just open an issue to let us know what you will be working on so that we can provide you with guidance.\n\n\n\nThe best way to send feedback is to file an issue at https://github.com/Harrisonlee0530/root_finding/issues. If your feedback fits the format of one of the issue templates, please use that. Remember that this is a volunteer-driven project and everybody has limited time.\n\n\n\n\nReady to contribute? Here’s how to set up root_finding for local development.\n\nFork the https://github.com/Harrisonlee0530/root_finding repository on GitHub.\nClone your fork locally (if you want to work locally)\ngit clone git@github.com:your_name_here/root_finding.git\nInstall hatch.\nCreate a branch for local development using the default branch (typically main) as a starting point. Use fix or feat as a prefix for your branch name.\ngit checkout main\ngit checkout -b fix-name-of-your-bugfix\nNow you can make your changes locally.\nWhen you’re done making changes, apply the quality assurance tools and check that your changes pass our test suite. This is all included with tox\nhatch run test:run\nCommit your changes and push your branch to GitHub. Please use semantic commit messages.\ngit add .\ngit commit -m \"fix: summarize your changes\"\ngit push -u origin fix-name-of-your-bugfix\nOpen the link displayed in the message when pushing your new branch in order to submit a pull request.\n\n\n\nBefore you submit a pull request, check that it meets these guidelines:\n\nThe pull request should include tests.\nIf the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring.\nYour pull request will automatically be checked by the full test suite. It needs to pass all of them before it can be considered for merging."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#example-contributions",
+    "href": "CONTRIBUTING.html#example-contributions",
+    "title": "Contributing",
+    "section": "",
+    "text": "You can contribute in many ways, for example:\n\nReport bugs\nFix Bugs\nImplement Features\nWrite Documentation\nSubmit Feedback\n\n\n\nReport bugs at https://github.com/Harrisonlee0530/root_finding/issues.\nIf you are reporting a bug, please follow the template guidelines. The more detailed your report, the easier and thus faster we can help you.\n\n\n\nLook through the GitHub issues for bugs. Anything labelled with bug and help wanted is open to whoever wants to implement it. When you decide to work on such an issue, please assign yourself to it and add a comment that you’ll be working on that, too. If you see another issue without the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nLook through the GitHub issues for features. Anything labelled with enhancement and help wanted is open to whoever wants to implement it. As for fixing bugs, please assign yourself to the issue and add a comment that you’ll be working on that, too. If another enhancement catches your fancy, but it doesn’t have the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nroot_finding could always use more documentation, whether as part of the official documentation, in docstrings, or even on the web in blog posts, articles, and such. Just open an issue to let us know what you will be working on so that we can provide you with guidance.\n\n\n\nThe best way to send feedback is to file an issue at https://github.com/Harrisonlee0530/root_finding/issues. If your feedback fits the format of one of the issue templates, please use that. Remember that this is a volunteer-driven project and everybody has limited time."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#get-started",
+    "href": "CONTRIBUTING.html#get-started",
+    "title": "Contributing",
+    "section": "",
+    "text": "Ready to contribute? Here’s how to set up root_finding for local development.\n\nFork the https://github.com/Harrisonlee0530/root_finding repository on GitHub.\nClone your fork locally (if you want to work locally)\ngit clone git@github.com:your_name_here/root_finding.git\nInstall hatch.\nCreate a branch for local development using the default branch (typically main) as a starting point. Use fix or feat as a prefix for your branch name.\ngit checkout main\ngit checkout -b fix-name-of-your-bugfix\nNow you can make your changes locally.\nWhen you’re done making changes, apply the quality assurance tools and check that your changes pass our test suite. This is all included with tox\nhatch run test:run\nCommit your changes and push your branch to GitHub. Please use semantic commit messages.\ngit add .\ngit commit -m \"fix: summarize your changes\"\ngit push -u origin fix-name-of-your-bugfix\nOpen the link displayed in the message when pushing your new branch in order to submit a pull request.\n\n\n\nBefore you submit a pull request, check that it meets these guidelines:\n\nThe pull request should include tests.\nIf the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring.\nYour pull request will automatically be checked by the full test suite. It needs to pass all of them before it can be considered for merging."
+  },
+  {
+    "objectID": "CHANGELOG.html",
+    "href": "CHANGELOG.html",
+    "title": "Changelog",
+    "section": "",
+    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\nsetup workflow for code coverage with codecov and documentation preview with netlify\nAdd badges for linting, MIT license, codecov, netlify python version, testpypi version\nfix documentation website link in README.md in issue 78 mentioned in parent issues issue 61 comment 3, issue 76 comment 2 and issue 74 comment 3\nadd documentation to test functions in test_hybrid.py and test_plot_root.py as suggested by TA’s feedback\nFix installation instructions in README - provide working GitHub installation command instead of non-existent PyPI package\nFix documentation links in README - update to point to deployed documentation site instead of GitHub repository\nAdd testing dependencies installation step in README for developers\nSimplify public API usage examples in README - use top-level imports instead of deep module paths\nAdd reminder about testing dependencies in “Running Tests” section\nUpdate README to address peer review feedback\n\n\n\n\n\nAdd github actions workflow to automate pytest + formatting\nAdd github actions workflow to deploy package + test\nAdd github actions workflow to update documnetation\nAdd a few unit tests\n\n\n\n\n\nUpdate documentation for bisection.py\nAdd tests and function body for bisection.py\nAdd tests and function body for bisection_find_roots.py\nupdate dependencies in pyproject.toml\nadd evironment.yml\nAdd tests and function body for newton1d.py\n\n\n\n\n\nUpdate code of conduct enforcement contact\nAdd documentation for bisection.py\nAdd documentation for newton1d.py\nAdd documentation for hybrid.py\nAdd documentation for plot_root.py\nreformat .py files\nFirst release"
+  },
+  {
+    "objectID": "CHANGELOG.html#section",
+    "href": "CHANGELOG.html#section",
+    "title": "Changelog",
+    "section": "",
+    "text": "setup workflow for code coverage with codecov and documentation preview with netlify\nAdd badges for linting, MIT license, codecov, netlify python version, testpypi version\nfix documentation website link in README.md in issue 78 mentioned in parent issues issue 61 comment 3, issue 76 comment 2 and issue 74 comment 3\nadd documentation to test functions in test_hybrid.py and test_plot_root.py as suggested by TA’s feedback\nFix installation instructions in README - provide working GitHub installation command instead of non-existent PyPI package\nFix documentation links in README - update to point to deployed documentation site instead of GitHub repository\nAdd testing dependencies installation step in README for developers\nSimplify public API usage examples in README - use top-level imports instead of deep module paths\nAdd reminder about testing dependencies in “Running Tests” section\nUpdate README to address peer review feedback"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-1",
+    "href": "CHANGELOG.html#section-1",
+    "title": "Changelog",
+    "section": "",
+    "text": "Add github actions workflow to automate pytest + formatting\nAdd github actions workflow to deploy package + test\nAdd github actions workflow to update documnetation\nAdd a few unit tests"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-2",
+    "href": "CHANGELOG.html#section-2",
+    "title": "Changelog",
+    "section": "",
+    "text": "Update documentation for bisection.py\nAdd tests and function body for bisection.py\nAdd tests and function body for bisection_find_roots.py\nupdate dependencies in pyproject.toml\nadd evironment.yml\nAdd tests and function body for newton1d.py"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-3",
+    "href": "CHANGELOG.html#section-3",
+    "title": "Changelog",
+    "section": "",
+    "text": "Update code of conduct enforcement contact\nAdd documentation for bisection.py\nAdd documentation for newton1d.py\nAdd documentation for hybrid.py\nAdd documentation for plot_root.py\nreformat .py files\nFirst release"
+  },
+  {
+    "objectID": "DEVELOPMENT.html",
+    "href": "DEVELOPMENT.html",
+    "title": "Development Guide",
+    "section": "",
+    "text": "Welcome to your shiny new package. This page will help you get started with using Hatch to manage your package.\nIf you look at your project, you will see that a pyproject.toml file. This file stores both your package configuration and settings for development tools like Hatch that you will use to work on your package.\nThis file is written using a .toml format. You can learn more about toml here. Here’s the TL&DR:\n\nEach [] section in the toml file is called a table.\nYou can nest tables with double brackets like this[[]]\nTables contain information about a element that you want to configure.\n\nWe are using Hatch as the default packaging tool. Hatch allows you to configure and run environments and scripts similar to workflow tools like tox or nox.\nHach, by default, uses virtual environments (venv) to manage environments. But you can configure it to use other environment tools.Read the hatch documentation to learn more about environments.\nFor this template, we have set up Hatch environments for you to use. At the bottom of your pyproject.toml file, notice a hatch environment section that looks like this:\n########################################\n# Hatch Environments\n########################################\nBelow is the Hatch environment to install your package. Notice that it defines pip and twine as two packages that the environment needs.\n[tool.hatch.envs.build]\ndescription = \"\"\"Test the installation the package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\nThe table below defines the scripts that you will run build and check your package.\n[tool.hatch.envs.build.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\ndetached = true\nYou can enter that environment to check it out:\n$ hatch shell build\nIf you run pip list, in the environment, twine will be there:\n$ pip list\nHatch by default, installs your package in editable mode (-e) into its virtual environments. But if detached=True is set, then it will skip installing your package into the virtual enviornment.\n\n\nBelow you see the Hatch environment test table.\ntool.hatch.envs says, “Hey, Hatch, this is the definition for an environment.” test is the name of the environment.\nThe environment below defines the dependencies that Hatch needs to install into the environment named test.\n[tool.hatch.envs.test]\ndescription = \"\"\"Run the test suite.\"\"\"\ndependencies = [\n    \"pytest\",\n    \"pytest-cov\",\n    \"pytest-raises\",\n    \"pytest-randomly\",\n    \"pytest-xdist\",\n]\nTo enter a Hatch environment use:\nhatch shell environmentname\nSo you can enter the test environment above with:\nhatch shell test\n\n\n\nIf the environment has a matrix associated with it, that tells Hatch to run the test scripts across different Python versions.\n[[tool.hatch.envs.test.matrix]]\npython = [\"3.10\", \"3.11\", \"3.12\", \"3.13\"]\nIf you run hatch shell test, you will see the output below. To enter an environment with a matrix attached to it, you need to pick the Python environment version that you want to open.\n$ hatch shell test                           \nEnvironment `test` defines a matrix, choose one of the following instead:\n\ntest.py3.10\ntest.py3.11\ntest.py3.12\ntest.py3.13\nOpen the Python 3.13 environment like this:\n$ hatch shell test.py3.13\nTo leave an environment use:\n$ deactivate\n\n\n\nIn the tests section of your pyproject.toml, you will see a tool.hatch.envs.test.scripts table.\nThis table defines the commands that you want Hatch to run in the test environment. Notice that the script has one command called run.\n[tool.hatch.envs.test.scripts]\nrun = \"pytest {args:--cov=greatproject --cov-report=term-missing}\"\nTo run this script , use:\nhatch run test:run\n\nhatch run: calls Hatch and tells it that it will be running a command\ntest:run: defines the environment you want it to run (test) and defines the name of the “script” to berun.\n\nIf you have a Hatch matrix setup for tests, it will both install the necessary Python version using UV and run your tests on each version of the Python versions that you declare in the matrix table. In this case, there are 4 Python versions in the environment, so your tests will run 4 times, once in each Python version listed in the matrix table.\n@lwasser ➜ /workspaces/pyopensci-scipy25-create-python-package (main) $ hatch run test:run\n──────────────────────────────────────────────────────────────────────── test.py3.10 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.10.16, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1490740387\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.10.16-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n──────────────────────────────────────────────────────────────────────── test.py3.11 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.11.12, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1596865075\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.11.12-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n\n\n\nYou can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
+  },
+  {
+    "objectID": "DEVELOPMENT.html#build-your-package",
+    "href": "DEVELOPMENT.html#build-your-package",
+    "title": "Development Guide",
+    "section": "",
+    "text": "You can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
   },
   {
     "objectID": "docs/tutorial.html",
@@ -273,227 +343,234 @@
     "text": "Next Steps\n\nCheck out the API Reference for complete documentation\nVisit our GitHub repository for examples and issues"
   },
   {
-    "objectID": "DEVELOPMENT.html",
-    "href": "DEVELOPMENT.html",
-    "title": "Development Guide",
+    "objectID": "docs/reference/bisection.bisection.bisection.html",
+    "href": "docs/reference/bisection.bisection.bisection.html",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "Welcome to your shiny new package. This page will help you get started with using Hatch to manage your package.\nIf you look at your project, you will see that a pyproject.toml file. This file stores both your package configuration and settings for development tools like Hatch that you will use to work on your package.\nThis file is written using a .toml format. You can learn more about toml here. Here’s the TL&DR:\n\nEach [] section in the toml file is called a table.\nYou can nest tables with double brackets like this[[]]\nTables contain information about a element that you want to configure.\n\nWe are using Hatch as the default packaging tool. Hatch allows you to configure and run environments and scripts similar to workflow tools like tox or nox.\nHach, by default, uses virtual environments (venv) to manage environments. But you can configure it to use other environment tools.Read the hatch documentation to learn more about environments.\nFor this template, we have set up Hatch environments for you to use. At the bottom of your pyproject.toml file, notice a hatch environment section that looks like this:\n########################################\n# Hatch Environments\n########################################\nBelow is the Hatch environment to install your package. Notice that it defines pip and twine as two packages that the environment needs.\n[tool.hatch.envs.build]\ndescription = \"\"\"Test the installation the package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\nThe table below defines the scripts that you will run build and check your package.\n[tool.hatch.envs.build.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\ndetached = true\nYou can enter that environment to check it out:\n$ hatch shell build\nIf you run pip list, in the environment, twine will be there:\n$ pip list\nHatch by default, installs your package in editable mode (-e) into its virtual environments. But if detached=True is set, then it will skip installing your package into the virtual enviornment.\n\n\nBelow you see the Hatch environment test table.\ntool.hatch.envs says, “Hey, Hatch, this is the definition for an environment.” test is the name of the environment.\nThe environment below defines the dependencies that Hatch needs to install into the environment named test.\n[tool.hatch.envs.test]\ndescription = \"\"\"Run the test suite.\"\"\"\ndependencies = [\n    \"pytest\",\n    \"pytest-cov\",\n    \"pytest-raises\",\n    \"pytest-randomly\",\n    \"pytest-xdist\",\n]\nTo enter a Hatch environment use:\nhatch shell environmentname\nSo you can enter the test environment above with:\nhatch shell test\n\n\n\nIf the environment has a matrix associated with it, that tells Hatch to run the test scripts across different Python versions.\n[[tool.hatch.envs.test.matrix]]\npython = [\"3.10\", \"3.11\", \"3.12\", \"3.13\"]\nIf you run hatch shell test, you will see the output below. To enter an environment with a matrix attached to it, you need to pick the Python environment version that you want to open.\n$ hatch shell test                           \nEnvironment `test` defines a matrix, choose one of the following instead:\n\ntest.py3.10\ntest.py3.11\ntest.py3.12\ntest.py3.13\nOpen the Python 3.13 environment like this:\n$ hatch shell test.py3.13\nTo leave an environment use:\n$ deactivate\n\n\n\nIn the tests section of your pyproject.toml, you will see a tool.hatch.envs.test.scripts table.\nThis table defines the commands that you want Hatch to run in the test environment. Notice that the script has one command called run.\n[tool.hatch.envs.test.scripts]\nrun = \"pytest {args:--cov=greatproject --cov-report=term-missing}\"\nTo run this script , use:\nhatch run test:run\n\nhatch run: calls Hatch and tells it that it will be running a command\ntest:run: defines the environment you want it to run (test) and defines the name of the “script” to berun.\n\nIf you have a Hatch matrix setup for tests, it will both install the necessary Python version using UV and run your tests on each version of the Python versions that you declare in the matrix table. In this case, there are 4 Python versions in the environment, so your tests will run 4 times, once in each Python version listed in the matrix table.\n@lwasser ➜ /workspaces/pyopensci-scipy25-create-python-package (main) $ hatch run test:run\n──────────────────────────────────────────────────────────────────────── test.py3.10 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.10.16, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1490740387\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.10.16-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n──────────────────────────────────────────────────────────────────────── test.py3.11 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.11.12, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1596865075\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.11.12-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n\n\n\nYou can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
+    "text": "bisection.bisection.bisection(f, xmin, xmax, tol=1e-09, max_iter=500)\nFind a root of a scalar function using the bisection method.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance. Convergence is achieved when \\|xmax - xmin\\| &lt; tol. Default is 1e-9.\n1e-09\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 500.\n500\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroot\nfloat\nEstimated root of the function f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the initial interval [xmin, xmax] does not bracket a root (that is, if f(xmin) and f(xmax) have the same sign).\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\n\n\n\nThe bisection method requires the root to be enclosed within the initial interval [xmin, xmax] such that:\n:math:f(x_{\\min}) \\cdot f(x_{\\max}) &lt; 0\nConvergence is guaranteed for continuous functions when this condition is satisfied and:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\n\n\n\n&gt;&gt;&gt; root = bisection(lambda x: 3*x**3 + 4*x**2 - 2*x - 2, 0, 2, max_iter=500)\n&gt;&gt;&gt; f\"{root:.5f}\"\n'0.74827'"
   },
   {
-    "objectID": "DEVELOPMENT.html#build-your-package",
-    "href": "DEVELOPMENT.html#build-your-package",
-    "title": "Development Guide",
+    "objectID": "docs/reference/bisection.bisection.bisection.html#parameters",
+    "href": "docs/reference/bisection.bisection.bisection.html#parameters",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "You can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance. Convergence is achieved when \\|xmax - xmin\\| &lt; tol. Default is 1e-9.\n1e-09\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 500.\n500"
   },
   {
-    "objectID": "CHANGELOG.html",
-    "href": "CHANGELOG.html",
-    "title": "Changelog",
+    "objectID": "docs/reference/bisection.bisection.bisection.html#returns",
+    "href": "docs/reference/bisection.bisection.bisection.html#returns",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\nAdd github actions workflow to automate pytest + formatting\nAdd github actions workflow to deploy package + test\nAdd github actions workflow to update documnetation\nAdd a few unit tests\n\n\n\n\n\n\nUpdate documentation for bisection.py\nAdd tests and function body for bisection.py\nAdd tests and function body for bisection_find_roots.py\nupdate dependencies in pyproject.toml\nadd evironment.yml\nAdd tests and function body for newton1d.py\n\n\n\n\n\nUpdate code of conduct enforcement contact\nAdd documentation for bisection.py\nAdd documentation for newton1d.py\nAdd documentation for hybrid.py\nAdd documentation for plot_root.py\nreformat .py files\nFirst release"
+    "text": "Name\nType\nDescription\n\n\n\n\nroot\nfloat\nEstimated root of the function f."
   },
   {
-    "objectID": "CHANGELOG.html#unreleased",
-    "href": "CHANGELOG.html#unreleased",
-    "title": "Changelog",
+    "objectID": "docs/reference/bisection.bisection.bisection.html#raises",
+    "href": "docs/reference/bisection.bisection.bisection.html#raises",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "Add github actions workflow to automate pytest + formatting\nAdd github actions workflow to deploy package + test\nAdd github actions workflow to update documnetation\nAdd a few unit tests"
+    "text": "Name\nType\nDescription\n\n\n\n\n\nValueError\nIf the initial interval [xmin, xmax] does not bracket a root (that is, if f(xmin) and f(xmax) have the same sign).\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types."
   },
   {
-    "objectID": "CHANGELOG.html#section",
-    "href": "CHANGELOG.html#section",
-    "title": "Changelog",
+    "objectID": "docs/reference/bisection.bisection.bisection.html#notes",
+    "href": "docs/reference/bisection.bisection.bisection.html#notes",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "Update documentation for bisection.py\nAdd tests and function body for bisection.py\nAdd tests and function body for bisection_find_roots.py\nupdate dependencies in pyproject.toml\nadd evironment.yml\nAdd tests and function body for newton1d.py"
+    "text": "The bisection method requires the root to be enclosed within the initial interval [xmin, xmax] such that:\n:math:f(x_{\\min}) \\cdot f(x_{\\max}) &lt; 0\nConvergence is guaranteed for continuous functions when this condition is satisfied and:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}"
   },
   {
-    "objectID": "CHANGELOG.html#section-1",
-    "href": "CHANGELOG.html#section-1",
-    "title": "Changelog",
+    "objectID": "docs/reference/bisection.bisection.bisection.html#examples",
+    "href": "docs/reference/bisection.bisection.bisection.html#examples",
+    "title": "bisection.bisection.bisection",
     "section": "",
-    "text": "Update code of conduct enforcement contact\nAdd documentation for bisection.py\nAdd documentation for newton1d.py\nAdd documentation for hybrid.py\nAdd documentation for plot_root.py\nreformat .py files\nFirst release"
+    "text": "&gt;&gt;&gt; root = bisection(lambda x: 3*x**3 + 4*x**2 - 2*x - 2, 0, 2, max_iter=500)\n&gt;&gt;&gt; f\"{root:.5f}\"\n'0.74827'"
   },
   {
-    "objectID": "CONTRIBUTING.html",
-    "href": "CONTRIBUTING.html",
-    "title": "Contributing",
-    "section": "",
-    "text": "Contributions of all kinds are welcome here, and they are greatly appreciated! Every little bit helps, and credit will always be given.\n\n\nYou can contribute in many ways, for example:\n\nReport bugs\nFix Bugs\nImplement Features\nWrite Documentation\nSubmit Feedback\n\n\n\nReport bugs at https://github.com/Harrisonlee0530/root_finding/issues.\nIf you are reporting a bug, please follow the template guidelines. The more detailed your report, the easier and thus faster we can help you.\n\n\n\nLook through the GitHub issues for bugs. Anything labelled with bug and help wanted is open to whoever wants to implement it. When you decide to work on such an issue, please assign yourself to it and add a comment that you’ll be working on that, too. If you see another issue without the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nLook through the GitHub issues for features. Anything labelled with enhancement and help wanted is open to whoever wants to implement it. As for fixing bugs, please assign yourself to the issue and add a comment that you’ll be working on that, too. If another enhancement catches your fancy, but it doesn’t have the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nroot_finding could always use more documentation, whether as part of the official documentation, in docstrings, or even on the web in blog posts, articles, and such. Just open an issue to let us know what you will be working on so that we can provide you with guidance.\n\n\n\nThe best way to send feedback is to file an issue at https://github.com/Harrisonlee0530/root_finding/issues. If your feedback fits the format of one of the issue templates, please use that. Remember that this is a volunteer-driven project and everybody has limited time.\n\n\n\n\nReady to contribute? Here’s how to set up root_finding for local development.\n\nFork the https://github.com/Harrisonlee0530/root_finding repository on GitHub.\nClone your fork locally (if you want to work locally)\ngit clone git@github.com:your_name_here/root_finding.git\nInstall hatch.\nCreate a branch for local development using the default branch (typically main) as a starting point. Use fix or feat as a prefix for your branch name.\ngit checkout main\ngit checkout -b fix-name-of-your-bugfix\nNow you can make your changes locally.\nWhen you’re done making changes, apply the quality assurance tools and check that your changes pass our test suite. This is all included with tox\nhatch run test:run\nCommit your changes and push your branch to GitHub. Please use semantic commit messages.\ngit add .\ngit commit -m \"fix: summarize your changes\"\ngit push -u origin fix-name-of-your-bugfix\nOpen the link displayed in the message when pushing your new branch in order to submit a pull request.\n\n\n\nBefore you submit a pull request, check that it meets these guidelines:\n\nThe pull request should include tests.\nIf the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring.\nYour pull request will automatically be checked by the full test suite. It needs to pass all of them before it can be considered for merging."
-  },
-  {
-    "objectID": "CONTRIBUTING.html#example-contributions",
-    "href": "CONTRIBUTING.html#example-contributions",
-    "title": "Contributing",
-    "section": "",
-    "text": "You can contribute in many ways, for example:\n\nReport bugs\nFix Bugs\nImplement Features\nWrite Documentation\nSubmit Feedback\n\n\n\nReport bugs at https://github.com/Harrisonlee0530/root_finding/issues.\nIf you are reporting a bug, please follow the template guidelines. The more detailed your report, the easier and thus faster we can help you.\n\n\n\nLook through the GitHub issues for bugs. Anything labelled with bug and help wanted is open to whoever wants to implement it. When you decide to work on such an issue, please assign yourself to it and add a comment that you’ll be working on that, too. If you see another issue without the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nLook through the GitHub issues for features. Anything labelled with enhancement and help wanted is open to whoever wants to implement it. As for fixing bugs, please assign yourself to the issue and add a comment that you’ll be working on that, too. If another enhancement catches your fancy, but it doesn’t have the help wanted label, just post a comment, the maintainers are usually happy for any support that they can get.\n\n\n\nroot_finding could always use more documentation, whether as part of the official documentation, in docstrings, or even on the web in blog posts, articles, and such. Just open an issue to let us know what you will be working on so that we can provide you with guidance.\n\n\n\nThe best way to send feedback is to file an issue at https://github.com/Harrisonlee0530/root_finding/issues. If your feedback fits the format of one of the issue templates, please use that. Remember that this is a volunteer-driven project and everybody has limited time."
-  },
-  {
-    "objectID": "CONTRIBUTING.html#get-started",
-    "href": "CONTRIBUTING.html#get-started",
-    "title": "Contributing",
-    "section": "",
-    "text": "Ready to contribute? Here’s how to set up root_finding for local development.\n\nFork the https://github.com/Harrisonlee0530/root_finding repository on GitHub.\nClone your fork locally (if you want to work locally)\ngit clone git@github.com:your_name_here/root_finding.git\nInstall hatch.\nCreate a branch for local development using the default branch (typically main) as a starting point. Use fix or feat as a prefix for your branch name.\ngit checkout main\ngit checkout -b fix-name-of-your-bugfix\nNow you can make your changes locally.\nWhen you’re done making changes, apply the quality assurance tools and check that your changes pass our test suite. This is all included with tox\nhatch run test:run\nCommit your changes and push your branch to GitHub. Please use semantic commit messages.\ngit add .\ngit commit -m \"fix: summarize your changes\"\ngit push -u origin fix-name-of-your-bugfix\nOpen the link displayed in the message when pushing your new branch in order to submit a pull request.\n\n\n\nBefore you submit a pull request, check that it meets these guidelines:\n\nThe pull request should include tests.\nIf the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring.\nYour pull request will automatically be checked by the full test suite. It needs to pass all of them before it can be considered for merging."
-  },
-  {
-    "objectID": "docs/index.html",
-    "href": "docs/index.html",
-    "title": "root_finding",
-    "section": "",
-    "text": "A Python package for finding roots of scalar functions using various numerical methods."
-  },
-  {
-    "objectID": "docs/index.html#welcome-to-root_finding",
-    "href": "docs/index.html#welcome-to-root_finding",
-    "title": "root_finding",
-    "section": "",
-    "text": "A Python package for finding roots of scalar functions using various numerical methods."
-  },
-  {
-    "objectID": "docs/index.html#features",
-    "href": "docs/index.html#features",
-    "title": "root_finding",
-    "section": "Features",
-    "text": "Features\n\nBisection Method: Robust root finding using interval bisection\nNewton-Raphson Method: Fast convergence using derivatives\n\nHybrid Method: Combines bisection and Newton-Raphson for reliability and speed\nVisualization Tools: Plot functions and visualize root finding results"
-  },
-  {
-    "objectID": "docs/index.html#quick-start",
-    "href": "docs/index.html#quick-start",
-    "title": "root_finding",
-    "section": "Quick Start",
-    "text": "Quick Start\n\nInstallation\npip install root_finding\n\n\nBasic Usage\nfrom root_finding.bisection.bisection import bisection\n\n# Define a function\ndef f(x):\n    return x**2 - 4\n\n# Find root in interval [0, 3]\nroot = bisection(f, xmin=0, xmax=3, tol=1e-6)\nprint(f\"Root: {root}\")  # Should be approximately 2.0"
-  },
-  {
-    "objectID": "docs/index.html#documentation",
-    "href": "docs/index.html#documentation",
-    "title": "root_finding",
-    "section": "Documentation",
-    "text": "Documentation\n\nTutorial: Learn how to use the package\nAPI Reference: Complete API documentation"
-  },
-  {
-    "objectID": "docs/index.html#github-repository",
-    "href": "docs/index.html#github-repository",
-    "title": "root_finding",
-    "section": "GitHub Repository",
-    "text": "GitHub Repository\nVisit our GitHub repository for source code and to report issues."
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "bisection.bisection_find_roots.bisection_find_roots(\n    f,\n    xmin,\n    xmax,\n    tol=1e-06,\n    max_iter=100,\n    N=100,\n)\nFind multiple roots of a scalar function using the bisection method.\nThe interval [xmin, xmax] is split into N-1 subintervals, and each subinterval is checked for a sign change indicating a root.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance for the bisection method. The method converges when \\|xmax - xmin\\| &lt; tol. Default is 1e-6.\n1e-06\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 100.\n100\n\n\nN\nint\nNumber of subintervals. Default is 100 (99 intervals).\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nnumpy.ndarray\nEstimated roots of the function f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\nValueError\nIf xmax &lt;= xmin.\n\n\n\n\n\n\nThe bisection method requires that a root be enclosed within an interval [a, b] such that f(a) * f(b) &lt; 0.\nConvergence is achieved when:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\nWhen searching for multiple roots, this method:\n\nIs not guaranteed to find all roots\nCannot detect roots with multiplicity greater than one (e.g. x**2)\nMay return duplicate roots\n\n\n\n\nFind two simple roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)\n&gt;&gt;&gt; roots\narray([-2.,  2.])\nBisection may fail with large intervals:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=100)\n&gt;&gt;&gt; roots\narray([])\nSmaller intervals recover the roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=1000)\n&gt;&gt;&gt; roots\narray([-0.01,  0.01])\nDuplicate roots may be returned:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3,\n...                              tol=1e-9, N=100)\n&gt;&gt;&gt; roots\narray([-1., -1.,  1.,  1.])"
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#parameters",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#parameters",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the initial interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the initial interval.\nrequired\n\n\ntol\nfloat\nAbsolute convergence tolerance for the bisection method. The method converges when \\|xmax - xmin\\| &lt; tol. Default is 1e-6.\n1e-06\n\n\nmax_iter\nint\nMaximum number of iterations allowed. Default is 100.\n100\n\n\nN\nint\nNumber of subintervals. Default is 100 (99 intervals).\n100"
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#returns",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#returns",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nroots\nnumpy.ndarray\nEstimated roots of the function f."
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#raises",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#raises",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\n\nRuntimeError\nIf the algorithm fails to converge within max_iter iterations.\n\n\n\nTypeError\nIf the inputs are not of the expected types.\n\n\n\nValueError\nIf xmax &lt;= xmin."
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#notes",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#notes",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "The bisection method requires that a root be enclosed within an interval [a, b] such that f(a) * f(b) &lt; 0.\nConvergence is achieved when:\n:math:|x_{\\max} - x_{\\min}| &lt; \\mathrm{tol}\nWhen searching for multiple roots, this method:\n\nIs not guaranteed to find all roots\nCannot detect roots with multiplicity greater than one (e.g. x**2)\nMay return duplicate roots"
-  },
-  {
-    "objectID": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#examples",
-    "href": "docs/reference/bisection.bisection_find_roots.bisection_find_roots.html#examples",
-    "title": "bisection.bisection_find_roots.bisection_find_roots",
-    "section": "",
-    "text": "Find two simple roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 4, -3, 3, N=100)\n&gt;&gt;&gt; roots\narray([-2.,  2.])\nBisection may fail with large intervals:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=100)\n&gt;&gt;&gt; roots\narray([])\nSmaller intervals recover the roots:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 0.0001, -3, 3,\n...                              tol=1e-9, max_iter=1000, N=1000)\n&gt;&gt;&gt; roots\narray([-0.01,  0.01])\nDuplicate roots may be returned:\n&gt;&gt;&gt; roots = bisection_find_roots(lambda x: x**2 - 1, -3, 3,\n...                              tol=1e-9, N=100)\n&gt;&gt;&gt; roots\narray([-1., -1.,  1.,  1.])"
-  },
-  {
-    "objectID": "docs/reference/newton1d.html",
-    "href": "docs/reference/newton1d.html",
-    "title": "newton1d",
-    "section": "",
-    "text": "newton1d\nA module that implements a root finding algorithm using Newton-Raphson method.\n\n\n\n\n\nName\nDescription\n\n\n\n\nnewton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\nnewton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
-  },
-  {
-    "objectID": "docs/reference/newton1d.html#functions",
-    "href": "docs/reference/newton1d.html#functions",
-    "title": "newton1d",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nnewton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\nnewton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
-  },
-  {
-    "objectID": "docs/reference/hybrid.html",
-    "href": "docs/reference/hybrid.html",
-    "title": "hybrid",
-    "section": "",
-    "text": "hybrid\nA module that implements a root finding algorithm using Bisection and Newton-Raphson method combined.\n\n\n\n\n\nName\nDescription\n\n\n\n\nhybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\nhybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
-  },
-  {
-    "objectID": "docs/reference/hybrid.html#functions",
-    "href": "docs/reference/hybrid.html#functions",
-    "title": "hybrid",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nhybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\nhybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html",
-    "href": "docs/reference/hybrid.hybrid.html",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "hybrid.hybrid(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    n=50,\n)\nFind multiple roots of a scalar function using a hybrid Bisection-Newton method.\nThis algorithm combines a robust bisection-based root searching stage with Newton-Raphson refinement to efficiently locate all detectable roots within a given interval.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found.\n\n\n\n\n\n\nThe hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection.\n\n\n\nbisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement.\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html#parameters",
-    "href": "docs/reference/hybrid.hybrid.html#parameters",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose roots are sought. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the search interval.\nrequired\n\n\ntol1\nfloat\nAbsolute or relative convergence tolerance used by the bisection-based root search. This tolerance controls the accuracy of the initial guesses passed to Newton’s method and must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance used by the Newton-Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iteration for bisection method, Default = 500\n500\n\n\nmax_iter2\nint\nMaximum number of iteration for Newton’s method, Default = 500\n500\n\n\nn\nint\nnumber of initial guess if bisection fails for some reason (ex: when f(x) = x^2)\n50"
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html#returns",
-    "href": "docs/reference/hybrid.hybrid.html#returns",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nroots\nSequence[float]\nA sequence of estimated roots of the function f within the interval [xmin, xmax]. Only roots for which Newton’s method converges successfully are returned. The output may be empty if no convergent roots are found."
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html#notes",
-    "href": "docs/reference/hybrid.hybrid.html#notes",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "The hybrid algorithm proceeds in two stages:\n\nBisection-based root search\nThe interval [xmin, xmax] is subdivided and examined for sign changes of f. Each detected sign change (or exact zero) produces an initial root estimate using the bisection method via bisection_find_roots.\nThis stage is robust but may:\n\nMiss roots of even multiplicity\nMiss roots if the subdivision is too coarse\nReturn duplicate or closely spaced root estimates\n\nNewton-Raphson refinement\nEach bisection-derived estimate is passed as an initial guess to newton1d, which rapidly refines the root when the derivative is well-behaved.\nNewton’s method may fail to converge if:\n\nThe derivative is zero or nearly zero\nThe initial guess is too far from a true root\nThe iterates diverge or become non-finite\n\n\nDuplicate roots produced by either stage may be filtered using the Newton convergence tolerance tol2.\nConvergence for Newton’s method is declared when:\n|x_{n+1} - x_n| &lt;= tol2 * max(1, |x_{n+1}|).\nThis hybrid approach improves robustness compared to Newton’s method alone while achieving faster convergence than pure bisection."
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html#see-also",
-    "href": "docs/reference/hybrid.hybrid.html#see-also",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "bisection_find_roots : Bisection-based root search for detecting multiple candidate roots. newton1d : Newton-Raphson method for fast local root refinement."
-  },
-  {
-    "objectID": "docs/reference/hybrid.hybrid.html#examples",
-    "href": "docs/reference/hybrid.hybrid.html#examples",
-    "title": "hybrid.hybrid",
-    "section": "",
-    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; roots = hybrid(f, df, -3, 3, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-2.0, 2.0]\n&gt;&gt;&gt; f = lambda x: x**3 - x\n&gt;&gt;&gt; df = lambda x: 3*x**2 - 1\n&gt;&gt;&gt; roots = hybrid(f, df, -2, 2, tol1=1e-6, tol2=1e-12)\n&gt;&gt;&gt; sorted(roots)\n[-1.0, 0.0, 1.0]"
-  },
-  {
-    "objectID": "docs/reference.html",
-    "href": "docs/reference.html",
+    "objectID": "docs/reference/index.html",
+    "href": "docs/reference/index.html",
     "title": "API Reference",
     "section": "",
-    "text": "{{&lt; quartodoc-ref &gt;}}"
+    "text": "Root finding using bisection method\n\n\n\nbisection.bisection.bisection\nFind a root of a scalar function using the bisection method.\n\n\nbisection.bisection_find_roots.bisection_find_roots\nFind multiple roots of a scalar function using the bisection method.\n\n\n\n\n\n\nRoot finding using Newton-Raphson method\n\n\n\nnewton1d.newton1d\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\nRoot finding using hybrid Bisection-Newton method\n\n\n\nhybrid.hybrid\nFind multiple roots of a scalar function using a hybrid\n\n\n\n\n\n\nTools for plotting root finding results\n\n\n\nplot_root.plot_root\nPlot a scalar function and visualize its roots using a hybrid"
+  },
+  {
+    "objectID": "docs/reference/index.html#bisection-method",
+    "href": "docs/reference/index.html#bisection-method",
+    "title": "API Reference",
+    "section": "",
+    "text": "Root finding using bisection method\n\n\n\nbisection.bisection.bisection\nFind a root of a scalar function using the bisection method.\n\n\nbisection.bisection_find_roots.bisection_find_roots\nFind multiple roots of a scalar function using the bisection method."
+  },
+  {
+    "objectID": "docs/reference/index.html#newtons-method",
+    "href": "docs/reference/index.html#newtons-method",
+    "title": "API Reference",
+    "section": "",
+    "text": "Root finding using Newton-Raphson method\n\n\n\nnewton1d.newton1d\nFind roots of a scalar function using Newton–Raphson."
+  },
+  {
+    "objectID": "docs/reference/index.html#hybrid-method",
+    "href": "docs/reference/index.html#hybrid-method",
+    "title": "API Reference",
+    "section": "",
+    "text": "Root finding using hybrid Bisection-Newton method\n\n\n\nhybrid.hybrid\nFind multiple roots of a scalar function using a hybrid"
+  },
+  {
+    "objectID": "docs/reference/index.html#visualization",
+    "href": "docs/reference/index.html#visualization",
+    "title": "API Reference",
+    "section": "",
+    "text": "Tools for plotting root finding results\n\n\n\nplot_root.plot_root\nPlot a scalar function and visualize its roots using a hybrid"
+  },
+  {
+    "objectID": "docs/reference/plot_root.html",
+    "href": "docs/reference/plot_root.html",
+    "title": "plot_root",
+    "section": "",
+    "text": "plot_root\nA module that provides visualization tools for root finding algorithms.\n\n\n\n\n\nName\nDescription\n\n\n\n\nplot_root\nPlot a scalar function and visualize its roots using a hybrid\n\n\n\n\n\nplot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
+  },
+  {
+    "objectID": "docs/reference/plot_root.html#functions",
+    "href": "docs/reference/plot_root.html#functions",
+    "title": "plot_root",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nplot_root\nPlot a scalar function and visualize its roots using a hybrid\n\n\n\n\n\nplot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
+  },
+  {
+    "objectID": "docs/reference/plot_root.plot_root.html",
+    "href": "docs/reference/plot_root.plot_root.html",
+    "title": "plot_root.plot_root",
+    "section": "",
+    "text": "plot_root.plot_root(\n    f,\n    dfdx,\n    xmin,\n    xmax,\n    tol1,\n    tol2,\n    max_iter1=500,\n    max_iter2=500,\n    npts=1000,\n    n=50,\n)\nPlot a scalar function and visualize its roots using a hybrid bisection-Newton root-finding algorithm.\nThis function computes the roots of a scalar function f within a given interval using the hybrid method and returns a Matplotlib figure containing the function plot and the detected roots.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
+  },
+  {
+    "objectID": "docs/reference/plot_root.plot_root.html#parameters",
+    "href": "docs/reference/plot_root.plot_root.html#parameters",
+    "title": "plot_root.plot_root",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nScalar function to be plotted. Must accept a single scalar argument.\nrequired\n\n\ndfdx\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nxmin\nfloat\nLower bound of the plotting and root-search interval.\nrequired\n\n\nxmax\nfloat\nUpper bound of the plotting and root-search interval.\nrequired\n\n\ntol1\nfloat\nConvergence tolerance passed to the bisection-based root search stage of the hybrid method. Must be strictly positive.\nrequired\n\n\ntol2\nfloat\nRelative convergence tolerance passed to the Newton-Raphson refinement stage of the hybrid method. Must be strictly positive.\nrequired\n\n\nmax_iter1\nint\nMaximum number of iterations allowed for the bisection-based root search. Default is 500.\n500\n\n\nmax_iter2\nint\nMaximum number of iterations allowed for Newton’s method. Default is 500.\n500\n\n\nnpts\nint\nNumber of points used to discretize the interval [xmin, xmax] for plotting the function. Default is 1000.\n1000\n\n\nn\nint\nNumber of subintervals used by the bisection-based root search. Passed to the hybrid solver. Default is 50.\n50"
+  },
+  {
+    "objectID": "docs/reference/plot_root.plot_root.html#returns",
+    "href": "docs/reference/plot_root.plot_root.html#returns",
+    "title": "plot_root.plot_root",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nfig\nmatplotlib.figure.Figure\nThe Matplotlib figure object.\n\n\nax\nmatplotlib.axes.Axes\nThe Matplotlib axes containing the plot."
+  },
+  {
+    "objectID": "docs/reference/plot_root.plot_root.html#examples",
+    "href": "docs/reference/plot_root.plot_root.html#examples",
+    "title": "plot_root.plot_root",
+    "section": "",
+    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 4\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; fig, ax = plot_root(f, df, -3, 3, 1e-6, 1e-12)\n&gt;&gt;&gt; fig.savefig(\"roots.png\")"
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html",
+    "href": "docs/reference/newton1d.newton1d.html",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "newton1d.newton1d(f, df, x0, tol1, max_iter=1000)\nFind roots of a scalar function using Newton–Raphson.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f.\n\n\n\n\n\n\nThe Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations.\n\n\n\n\n\n\n&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html#parameters",
+    "href": "docs/reference/newton1d.newton1d.html#parameters",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nf\ncallable\nFunction whose root is sought. Must accept a single scalar argument.\nrequired\n\n\ndf\ncallable\nDerivative of f. Must accept a single scalar argument.\nrequired\n\n\nx0\nfloat or Sequence[float]\nInitial guesses for the root.\nrequired\n\n\ntol1\nfloat\nRelative convergence tolerance for the Newton–Raphson method. Must be strictly positive.\nrequired\n\n\nmax_iter\nint\nMaximum number of iterations before declaring non-convergence.\n100"
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html#returns",
+    "href": "docs/reference/newton1d.newton1d.html#returns",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nx_arr\nSequence[float]\nEstimated roots of the function f."
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html#notes",
+    "href": "docs/reference/newton1d.newton1d.html#notes",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "The Newton–Raphson method updates the current estimate using the local linear approximation of f at the current point:\nx_{n+1} = x_n - f(x_n) / df(x_n).\nConvergence is declared when the step size is sufficiently small in a relative sense:\n|x_{n+1} - x_n| &lt;= tol1 * max(1, |x_{n+1}|).\nThis is numerically safer than |(x_{n+1}-x_n)/x_{n+1}| because it avoids division by zero when x_{n+1} = 0.\nThe method often converges rapidly when x0 is sufficiently close to the true root and df(x) is well-behaved, but it may fail when df(x_n) = 0 (or very close to zero) or when the iterates diverge."
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html#raises",
+    "href": "docs/reference/newton1d.newton1d.html#raises",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nTypeError\nIf f or df is not callable.\n\n\n\nValueError\nIf tol1 &lt;= 0, max_iter &lt;= 0, x0 is not finite, or df(x) is too close to zero during iteration.\n\n\n\nRuntimeError\nIf the method does not converge within max_iter iterations."
+  },
+  {
+    "objectID": "docs/reference/newton1d.newton1d.html#examples",
+    "href": "docs/reference/newton1d.newton1d.html#examples",
+    "title": "newton1d.newton1d",
+    "section": "",
+    "text": "&gt;&gt;&gt; f = lambda x: x**2 - 2\n&gt;&gt;&gt; df = lambda x: 2*x\n&gt;&gt;&gt; root = newton1d(f, df, 1.0, 1e-12)\n&gt;&gt;&gt; abs(root - 2**0.5) &lt; 1e-10\nTrue"
+  },
+  {
+    "objectID": "docs/project-retrospective.html",
+    "href": "docs/project-retrospective.html",
+    "title": "Project Retrospective",
+    "section": "",
+    "text": "This retrospective reflects on our experience developing the root_finding package. We examine what worked well, what could be improved, and what we learned about software development practices."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#overview",
+    "href": "docs/project-retrospective.html#overview",
+    "title": "Project Retrospective",
+    "section": "",
+    "text": "This retrospective reflects on our experience developing the root_finding package. We examine what worked well, what could be improved, and what we learned about software development practices."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#keep-doing-what-is-working-and-we-should-continue",
+    "href": "docs/project-retrospective.html#keep-doing-what-is-working-and-we-should-continue",
+    "title": "Project Retrospective",
+    "section": "Keep Doing: What is working and we should continue?",
+    "text": "Keep Doing: What is working and we should continue?\n\n1. Pull Request Workflow\nOur pull request and code review process worked really well. Having team members review each other’s code before merging caught bugs early and helped everyone understand the full codebase, not just their own functions.\nWhy continue: Catches issues before they reach main branch, shares knowledge across team.\n\n\n2. GitHub Actions for Automated Testing\nRunning pytest automatically on every push and PR across multiple Python versions and operating systems was incredibly valuable. It caught platform-specific issues we wouldn’t have found otherwise.\nWhy continue: Ensures code quality without manual effort, tests across environments we don’t have locally.\n\n\n3. Automated Documentation Deployment\nHaving documentation automatically build and deploy to GitHub Pages on every merge meant our docs were always up-to-date. We never had to remember to manually rebuild or deploy.\nWhy continue: Eliminates manual deployment work, keeps documentation synchronized with code.\n\n\n4. Clear Task Division\nEach person taking ownership of specific functions and their tests worked well. It allowed parallel development without stepping on each other’s toes.\nWhy continue: Enables efficient parallel work, clear accountability."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#less-of-what-do-we-want-less-of",
+    "href": "docs/project-retrospective.html#less-of-what-do-we-want-less-of",
+    "title": "Project Retrospective",
+    "section": "Less Of: What do we want less of?",
+    "text": "Less Of: What do we want less of?\n\n1. Incomplete Initial Setup\nWe started with a minimal environment.yml that only specified Python. This caused problems when peer reviewers tried to run tests and found pytest wasn’t included.\nWhat to reduce: Starting projects without complete dependency specifications.\nBetter approach: Include all development dependencies from the start, even if it feels like “extra work” initially.\n\n\n2. Assumptions About “Obvious” Things\nWe assumed certain things were obvious (like how to install from GitHub, where documentation links should point) but peer review showed these weren’t obvious at all.\nWhat to reduce: Making assumptions about what users know.\nBetter approach: Test all instructions as if we’re a brand new user who knows nothing about the project.\n\n\n3. Late Documentation Fixes\nWe didn’t catch documentation issues (broken links, wrong installation instructions) until peer review pointed them out.\nWhat to reduce: Treating documentation as an afterthought.\nBetter approach: Verify all documentation claims actually work before considering something “done.”"
+  },
+  {
+    "objectID": "docs/project-retrospective.html#more-of-what-do-we-want-to-see-more-of",
+    "href": "docs/project-retrospective.html#more-of-what-do-we-want-to-see-more-of",
+    "title": "Project Retrospective",
+    "section": "More Of: What do we want to see more of?",
+    "text": "More Of: What do we want to see more of?\n\n1. Comprehensive Testing\nWe wrote about 10 unit tests, which covered basic functionality but missed some edge cases that peer review identified.\nWhat we want more of: More extensive test coverage, including edge cases and integration tests.\nHow to achieve: Set coverage goals (e.g., &gt;80%), write tests before or alongside code, include edge case testing.\n\n\n2. User Perspective in Development\nPeer review revealed several usability issues (complex import paths, broken links) that we didn’t notice because we were too close to the project.\nWhat we want more of: Regular “fresh eyes” checks on documentation and user experience.\nHow to achieve: Have someone unfamiliar with the project try following the README, test installation on a clean environment.\n\n\n3. Proactive Issue Prevention\nMost of our fixes came from reacting to peer review feedback rather than catching issues ourselves first.\nWhat we want more of: Catching issues before external review.\nHow to achieve: Use automated tools (linters, link checkers), create checklists for common issues, test in clean environments."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#stop-doing-whats-not-working-and-we-should-stop",
+    "href": "docs/project-retrospective.html#stop-doing-whats-not-working-and-we-should-stop",
+    "title": "Project Retrospective",
+    "section": "Stop Doing: What’s not working and we should stop?",
+    "text": "Stop Doing: What’s not working and we should stop?\n\n1. Minimal Environment Specifications\nHaving an environment.yml with only Python and nothing else created problems for everyone trying to contribute or test.\nWhy stop: Makes it impossible for others to reproduce our development environment.\nReplace with: Complete environment specifications including all dependencies, testing tools, and documentation tools.\n\n\n2. Writing Documentation After Implementation\nWe wrote code first, then tried to document it afterward, which led to documentation that didn’t always match reality or user needs.\nWhy stop: Results in documentation that’s an afterthought rather than a guide.\nReplace with: Documentation-first or alongside-code approach. If we can’t explain what a function does before writing it, we probably don’t understand it well enough.\n\n\n3. Manual Verification of Changes\nWe relied on manual testing to verify changes worked, which led to missing issues in different environments or scenarios.\nWhy stop: Manual testing is incomplete and inconsistent.\nReplace with: Rely more on automated testing, add more test cases to catch issues automatically."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#start-doing-what-new-things-should-we-try-out",
+    "href": "docs/project-retrospective.html#start-doing-what-new-things-should-we-try-out",
+    "title": "Project Retrospective",
+    "section": "Start Doing: What new things should we try out?",
+    "text": "Start Doing: What new things should we try out?\n\n1. Code Quality Tools\nWhat: Implement automated code formatting (black or ruff) and linting.\nWhy: Would eliminate style discussions in code review, catch common bugs through static analysis.\nHow to implement: Add to GitHub Actions, use pre-commit hooks for local enforcement.\n\n\n2. Documentation Testing\nWhat: Verify all documentation examples actually work, check all links are valid.\nWhy: Prevents documentation drift and broken links like we experienced.\nHow to implement: Use doctest for code examples, automated link checkers in CI.\n\n\n3. Complete Dependency Management\nWhat: Create comprehensive environment.yml and requirements-dev.txt files.\nWhy: Makes it trivial for anyone to set up a working development environment.\nHow to implement: List ALL dependencies including testing tools, documentation tools, and development utilities.\n\n\n4. User Testing Before Release\nWhat: Have someone unfamiliar with the project follow the README on a fresh system.\nWhy: Catches usability issues before they reach users or reviewers.\nHow to implement: Make it part of the release checklist, rotate who does the “fresh install test.”\n\n\n5. Type Hints and Type Checking\nWhat: Add type hints to function signatures and use mypy for type checking.\nWhy: Catches a whole class of bugs at development time, makes code more self-documenting.\nHow to implement: Add gradually, start with new code and public APIs."
+  },
+  {
+    "objectID": "docs/project-retrospective.html#key-lessons-learned",
+    "href": "docs/project-retrospective.html#key-lessons-learned",
+    "title": "Project Retrospective",
+    "section": "Key Lessons Learned",
+    "text": "Key Lessons Learned\n\nTechnical Lessons\n\nAutomation saves time and catches bugs - GitHub Actions workflows were invaluable\nComplete setup instructions are critical - Incomplete environment.yml caused real friction\nThe public API matters - Deep import paths made our package seem harder to use than it was\nMulti-platform testing is essential - Found issues on Windows that didn’t show up on Mac\n\n\n\nProcess Lessons\n\nFresh perspectives are invaluable - Peer review caught issues we were blind to\nDocumentation is part of the product - Not an afterthought, needs same care as code\nSmall oversights compound - Missing pytest dependency, broken links, wrong instructions all created friction\nTest like a user, not like a developer - We knew the workarounds, users don’t\n\n\n\nTeam Lessons\n\nClear ownership works well - Each person responsible for specific functions prevented conflicts\nCode review shares knowledge - Everyone learned about the full codebase through reviews\nCommunication prevents problems - Discussing approach before implementing saved rework"
+  },
+  {
+    "objectID": "docs/project-retrospective.html#action-items-for-future-projects",
+    "href": "docs/project-retrospective.html#action-items-for-future-projects",
+    "title": "Project Retrospective",
+    "section": "Action Items for Future Projects",
+    "text": "Action Items for Future Projects\nImmediate (Do from project start): - [ ] Create complete environment.yml with all dependencies - [ ] Write documentation alongside or before code - [ ] Test installation instructions on clean environment - [ ] Verify all links in documentation actually work\nShort-term (Add within first week): - [ ] Set up automated code formatting - [ ] Implement linting in CI - [ ] Add more comprehensive test coverage - [ ] Create pre-commit hooks\nMedium-term (As project matures): - [ ] Add type hints to public API - [ ] Implement automated link checking - [ ] Set up performance benchmarking - [ ] Create contribution checklist"
+  },
+  {
+    "objectID": "docs/project-retrospective.html#conclusion",
+    "href": "docs/project-retrospective.html#conclusion",
+    "title": "Project Retrospective",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe most important insight from this project: Small details matter tremendously for user experience. Things that seem minor to us as developers—a missing dependency, a broken link, a complex import path—create real friction for users and contributors.\nThe tools and automation we put in place (GitHub Actions, automated documentation, pull request workflow) worked excellently. The gaps were in completeness—complete dependency specifications, complete testing, complete documentation verification.\nFor future projects, we should: 1. Assume nothing is obvious - Test everything from a fresh user’s perspective 2. Automate quality checks - Don’t rely on manual verification 3. Invest in setup upfront - Complete environment files, comprehensive testing, thorough documentation 4. Treat documentation as code - Same rigor, same review process, same testing\nThese aren’t complex lessons, but they’re important ones. The difference between a frustrating package and a pleasant one often comes down to these details."
   }
 ]
